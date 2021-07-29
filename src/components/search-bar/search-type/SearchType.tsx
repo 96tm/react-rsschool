@@ -1,4 +1,5 @@
 import React from 'react';
+import SearchTypeOption from './search-type-option/SearchTypeOption';
 import './SearchType.css';
 
 interface ISearchType {
@@ -14,18 +15,8 @@ interface ISearchTypes {
 export default function SearchType({ searchTypes }: ISearchTypes): JSX.Element {
   return (
     <div className="SearchBar__SearchType">
-      {searchTypes.map((searchType) => (
-        <input
-          type="radio"
-          name="SearchType"
-          value={searchType.value}
-          className="SearchBar__SearchType"
-          id={searchType.id}
-          key={searchType.id}
-          style={{
-            background: `no-repeat url(${searchType.icon})`,
-          }}
-        />
+      {searchTypes.map(({ icon, value, id }) => (
+        <SearchTypeOption id={id} value={value} icon={icon} key={id} />
       ))}
     </div>
   );
