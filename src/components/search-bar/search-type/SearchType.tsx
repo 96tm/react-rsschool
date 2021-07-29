@@ -21,8 +21,9 @@ export default function SearchType({ searchTypes }: ISearchTypes): JSX.Element {
           value={searchType.value}
           className="SearchBar__SearchType"
           id={searchType.id}
+          key={searchType.id}
           style={{
-            background: `no-repeat ${searchType.icon}`,
+            background: `no-repeat url(${searchType.icon})`,
           }}
         />
       ))}

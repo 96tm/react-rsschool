@@ -17,13 +17,18 @@ export default function SearchOptions({
   return (
     <div className="SearchBar__SearchOptions">
       {options.map((option) => (
-        <label htmlFor={option.id} className="SearchBar__SearchOptionLabel">
+        <label
+          htmlFor={option.id}
+          className="SearchBar__SearchOptionLabel"
+          key={option.id}
+        >
           <input
             type="radio"
             name="SearchOption"
             value={option.value}
             className="SearchBar__SearchOption"
             id={option.id}
+            key={option.id}
           />
           {option.text}
         </label>

@@ -1,4 +1,8 @@
 import React from 'react';
+import standardSearchType from 'public/assets/icons/standard.png';
+import documentSearchType from 'public/assets/icons/document.png';
+import imageSearchType from 'public/assets/icons/image.png';
+import videoSearchType from 'public/assets/icons/video.png';
 import './SearchForm.css';
 import SearchInput from '../search-input/SearchInput';
 import SearchButton from '../search-button/SearchButton';
@@ -18,22 +22,22 @@ export default function SearchForm(): JSX.Element {
     {
       id: 'SearchType__SearchType-standard',
       value: 'standard',
-      icon: '',
+      icon: standardSearchType,
     },
     {
       id: 'SearchType__SearchType-image',
       value: 'image',
-      icon: '',
+      icon: imageSearchType,
     },
     {
       id: 'SearchType__SearchType-document',
       value: 'document',
-      icon: '',
+      icon: documentSearchType,
     },
     {
       id: 'SearchType__SearchType-video',
       value: 'video',
-      icon: '',
+      icon: videoSearchType,
     },
   ];
   return (
