@@ -1,51 +1,32 @@
 import path from 'path';
 import webpack from 'webpack';
-import HtmlWebpackPlugin from 'html-webpack-plugin';
-import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
-import ESLintWebpackPlugin from 'eslint-webpack-plugin';
 import { CleanWebpackPlugin } from 'clean-webpack-plugin';
+import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
+import { merge } from 'webpack-merge';
+import common from './webpack.config.common';
 
-const config: webpack.Configuration = {
+const config: webpack.Configuration = merge(common, {
   mode: 'production',
-  entry: './src/index.tsx',
   output: {
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'dist1'),
     filename: '[name].[contenthash].js',
     publicPath: '',
   },
-  module: {
-    rules: [
-      {
-        test: /\.(ts|js)x?$/i,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader',
-          options: {
-            presets: [
-              '@babel/preset-env',
-              '@babel/preset-react',
-              '@babel/preset-typescript',
-            ],
-          },
+  plugins: [new CleanWebpackPlugin()],
+  devtool: 'source-map',
+  optimization: {
+    minimizer: [`...`, new CssMinimizerPlugin()],
+    splitChunks: {
+      cacheGroups: {
+        styles: {
+          name: 'styles',
+          type: 'css/mini-extract',
+          chunks: 'all',
+          enforce: true,
         },
       },
-    ],
+    },
   },
-  resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      template: 'src/index.html',
-    }),
-    new ForkTsCheckerWebpackPlugin({
-      async: false,
-    }),
-    new ESLintWebpackPlugin({
-      extensions: ['js', 'jsx', 'ts', 'tsx'],
-    }),
-    new CleanWebpackPlugin(),
-  ],
-};
+});
 
 export default config;
