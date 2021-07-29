@@ -1,10 +1,11 @@
 import React from 'react';
 import { hot } from 'react-hot-loader';
+import SearchBar from './components/search-bar/SearchBar';
 
 function App() {
   return (
     <div className="App">
-      <h1> Hello, World! </h1>
+      <SearchBar />
     </div>
   );
 }

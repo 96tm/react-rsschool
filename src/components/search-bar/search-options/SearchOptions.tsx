@@ -1,6 +1,33 @@
 import React from 'react';
 import './SearchOptions.css';
 
-export default function SearchOptions(): JSX.Element {
-  return <div className="SearchBar__SearchOptions" />;
+interface ISearchOption {
+  text: string;
+  value: string;
+  id: string;
+}
+
+interface ISearchOptions {
+  options: ISearchOption[];
+}
+
+export default function SearchOptions({
+  options,
+}: ISearchOptions): JSX.Element {
+  return (
+    <div className="SearchBar__SearchOptions">
+      {options.map((option) => (
+        <label htmlFor={option.id} className="SearchBar__SearchOptionLabel">
+          <input
+            type="radio"
+            name="SearchOption"
+            value={option.value}
+            className="SearchBar__SearchOption"
+            id={option.id}
+          />
+          {option.text}
+        </label>
+      ))}
+    </div>
+  );
 }

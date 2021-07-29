@@ -4,7 +4,7 @@ import './SearchInput.css';
 export default function SearchInput(): JSX.Element {
   return (
     <div className="SearchBar__SearchInputWrap">
-      <div className="SearchBar__SearchInput" />
+      <input type="text" className="SearchBar__SearchInput" />
     </div>
   );
 }
