@@ -8,7 +8,7 @@ interface ISearchLocation {
 }
 
 interface ISearchLocations {
-  options: ISearchLocation[];
+  searchLocations: ISearchLocation[];
 }
 
 interface ISearchLocationState {
@@ -16,7 +16,7 @@ interface ISearchLocationState {
 }
 
 export default function SearchLocation({
-  options,
+  searchLocations,
 }: ISearchLocations): JSX.Element {
   const [state, setState] = useState<ISearchLocationState>({
     searchLocation: 'local',
@@ -28,25 +28,28 @@ export default function SearchLocation({
   };
   return (
     <div className="SearchBar__SearchLocation">
-      {options.map((option) => (
-        <label
-          htmlFor={option.id}
-          className="SearchBar__SearchLocationLabel"
-          key={option.id}
-        >
-          <input
-            type="radio"
-            name="SearchLocation"
-            value={option.value}
-            className="SearchBar__SearchLocationOption"
-            id={option.id}
-            key={option.id}
-            checked={state.searchLocation === option.value}
-            onChange={handleChange}
-          />
-          {option.text}
-        </label>
-      ))}
+      {searchLocations.map((location) => {
+        const locationId = `SearchBar__SearchLocation-${location.id}`;
+        return (
+          <label
+            htmlFor={locationId}
+            className="SearchBar__SearchLocationLabel"
+            key={locationId}
+          >
+            <input
+              type="radio"
+              name="SearchLocation"
+              value={location.value}
+              className="SearchBar__SearchLocationOption"
+              id={locationId}
+              key={locationId}
+              checked={state.searchLocation === location.value}
+              onChange={handleChange}
+            />
+            {location.text}
+          </label>
+        );
+      })}
     </div>
   );
 }

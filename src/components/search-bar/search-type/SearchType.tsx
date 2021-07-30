@@ -27,16 +27,19 @@ export default function SearchType({ searchTypes }: ISearchTypes): JSX.Element {
   };
   return (
     <div className="SearchBar__SearchType">
-      {searchTypes.map(({ icon, value, id }) => (
-        <SearchTypeOption
-          id={id}
-          value={value}
-          icon={icon}
-          key={id}
-          checked={value === state.searchType}
-          handleChange={handleChange}
-        />
-      ))}
+      {searchTypes.map(({ icon, value, id }) => {
+        const typeId = `SearchType__SearchType-${id}`;
+        return (
+          <SearchTypeOption
+            id={typeId}
+            value={value}
+            icon={icon}
+            key={typeId}
+            checked={value === state.searchType}
+            handleChange={handleChange}
+          />
+        );
+      })}
     </div>
   );
 }

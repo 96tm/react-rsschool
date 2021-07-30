@@ -1,0 +1,10 @@
+.SearchBar__SearchForm {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  transform: translateY(50%);
+  justify-content: center;
+  column-gap: 10px;
+  width: 100%;
+  height: 90px;
+}

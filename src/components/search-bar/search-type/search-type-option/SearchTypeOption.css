@@ -20,11 +20,11 @@
   height: 100%;
   background-size: 100%;
   background-repeat: no-repeat;
-  filter: invert(61%) sepia(5%) saturate(695%) hue-rotate(165deg)
-    brightness(130%) contrast(89%);
+  filter: var(--filter-gray);
 }
 
-.SearchBar__SearchTypeOption:checked ~ .SearchBar__SearchTypeOptionIcon {
+.SearchBar__SearchTypeOption:checked ~ .SearchBar__SearchTypeOptionIcon,
+.SearchBar__SearchTypeOption:hover ~ .SearchBar__SearchTypeOptionIcon {
   filter: initial;
 }
 

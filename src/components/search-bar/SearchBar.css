@@ -1,8 +1,19 @@
+:root {
+  --white-text: rgb(230, 231, 231);
+  --gray-text: rgb(125, 125, 125);
+  --filter-gray: invert(61%) sepia(5%) saturate(695%) hue-rotate(165deg)
+    brightness(130%) contrast(89%);
+  --search-input-width: 68%;
+  --search-input-max-width: 720px;
+}
+
 .SearchBar {
   display: flex;
   width: 80%;
   max-width: 720px;
+  height: 170px;
   background: rgb(77, 90, 101);
   border-radius: 5px;
   font-family: Nunito, sans-serif;
+  color: var(--white-text);
 }
