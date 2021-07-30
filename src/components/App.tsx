@@ -1,6 +1,6 @@
 import React from 'react';
 import { hot } from 'react-hot-loader';
-import SearchBar from './components/search-bar/SearchBar';
+import SearchBar from './search-bar/SearchBar';
 
 function App() {
   return (

@@ -1,9 +1,7 @@
 .SearchBar__SearchTypeOptionContainer {
   position: relative;
   width: 20px;
-  height: 40px;
-  background-size: 100%;
-  background-repeat: no-repeat;
+  height: 35px;
   cursor: pointer;
 }
 
@@ -11,16 +9,34 @@
   position: absolute;
   left: 50%;
   width: 0;
+  opacity: 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
 }
 
-.SearchBar__SearchTypeOption:checked::before {
+.SearchBar__SearchTypeOptionIcon {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  filter: invert(61%) sepia(5%) saturate(695%) hue-rotate(165deg)
+    brightness(130%) contrast(89%);
+}
+
+.SearchBar__SearchTypeOption:checked ~ .SearchBar__SearchTypeOptionIcon {
+  filter: initial;
+}
+
+.SearchBar__SearchTypeOption:checked
+  ~ .SearchBar__SearchTypeOptionIcon::before {
   content: '';
   position: absolute;
   left: 50%;
-  bottom: -100%;
+  top: 50%;
   width: 0;
   border-left: 5px solid transparent;
   border-right: 5px solid transparent;
   border-bottom: 5px solid #fff;
-  transform: translate(-50%, 50%);
+  transform: translate(-50%, 100%);
 }

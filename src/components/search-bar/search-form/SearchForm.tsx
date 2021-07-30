@@ -6,10 +6,22 @@ import videoSearchType from 'public/assets/icons/video.png';
 import './SearchForm.css';
 import SearchInput from '../search-input/SearchInput';
 import SearchButton from '../search-button/SearchButton';
-import SearchOptions from '../search-options/SearchOptions';
+import SearchOptions from '../search-location/SearchLocation';
 import SearchType from '../search-type/SearchType';
 
+// interface ISearchFormState {
+//   searchType: 'standard' | 'image' | 'video' | 'document';
+//   searchOption: 'local' | 'web';
+// }
+
 export default function SearchForm(): JSX.Element {
+  // const [state, setState] = useState<ISearchFormState>({
+  //   searchType: 'standard',
+  //   searchOption: 'local',
+  // });
+  // const handleSearchTypeClick = (event: MouseEvent) => {
+  //   console.log('asd');
+  // };
   const searchOptions = [
     {
       id: 'SearchBar__SearchOption-local',
