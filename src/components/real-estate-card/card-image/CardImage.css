@@ -1,0 +1,8 @@
+.RealEstateCardCardImageContainer {
+  position: relative;
+}
+
+.RealEstateCardCardImage {
+  position: absolute;
+  width: 100%;
+}

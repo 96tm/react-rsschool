@@ -1,0 +1,35 @@
+.RealEstateCardImageButtons {
+  display: flex;
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: rgb(57, 54, 68, 0.7);
+  border-bottom-right-radius: 5px;
+  width: 22%;
+  padding: 5px 10px 5px 15px;
+  color: #fff;
+}
+
+.RealEstateCardButtonPhoto {
+  background: transparent no-repeat url('public/assets/icons/camera.png');
+  background-size: 100%;
+}
+
+.RealEstateCardButtonLayout {
+  background: transparent no-repeat url('public/assets/icons/layout.svg');
+  background-size: 88%;
+  margin-left: auto;
+}
+
+.RealEstateCardButtonPhoto,
+.RealEstateCardButtonLayout {
+  border: none;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.RealEstateCardButtonPhoto:hover,
+.RealEstateCardButtonLayout:hover {
+  filter: var(--filter-gray);
+}
