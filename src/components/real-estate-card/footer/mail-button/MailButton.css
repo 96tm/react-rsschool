@@ -1,0 +1,16 @@
+.RealEstateCard__MailButton {
+  margin-left: auto;
+  width: 15%;
+  padding-top: 15%;
+  border-radius: 50%;
+  border: 1px solid var(--gray-border-transparent);
+  cursor: pointer;
+  background: no-repeat url('public/assets/icons/mail.svg') center;
+  background-size: 50%;
+}
+
+.RealEstateCard__MailButton:hover {
+  background: var(--gray-border-transparent) no-repeat
+    url('public/assets/icons/mail.svg') center;
+  background-size: 50%;
+}

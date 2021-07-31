@@ -1,0 +1,19 @@
+.RealEstateCard__PriceSection {
+  height: 100px;
+  padding: 20px 30% 20px 15px;
+  background: #f4f4f4;
+}
+
+.RealEstateCard__Price {
+  font-weight: 700;
+  font-size: 30px;
+  margin: 0;
+  color: hsl(250deg 4% 45%);
+}
+
+.RealEstateCard__PriceComment {
+  padding-top: 15px;
+  margin: 0;
+  font-weight: 600;
+  color: hsl(250deg 4% 45%);
+}

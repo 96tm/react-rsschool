@@ -1,7 +1,25 @@
+:root {
+  --white-text: rgb(230, 231, 231);
+  --gray-text: rgb(125, 125, 125);
+  --dark-gray-text: #64636a;
+  --gray-border-transparent: rgb(125, 125, 125, 0.25);
+  --filter-gray: invert(61%) sepia(5%) saturate(695%) hue-rotate(165deg)
+    brightness(130%) contrast(89%);
+  --search-input-width: 68%;
+  --search-input-max-width: 720px;
+}
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+.text-crop {
+  overflow: hidden;
+  word-break: break-word;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 .App {

@@ -1,14 +1,23 @@
 import React from 'react';
+import './Content.css';
 import Description from './description/Description';
 import Agent from './agent/Agent';
-import Footer from '../footer/Footer';
 
-export default function Content(): JSX.Element {
+interface IContentProps {
+  descriptionTitle: string;
+  descriptionText: string;
+  agentLogo: string;
+}
+
+export default function Content({
+  descriptionTitle,
+  descriptionText,
+  agentLogo,
+}: IContentProps): JSX.Element {
   return (
-    <div className="RealEstateCardContent">
-      <Description />
-      <Agent />
-      <Footer />
+    <div className="RealEstateCard__Content">
+      <Description title={descriptionTitle} text={descriptionText} />
+      <Agent src={agentLogo} />
     </div>
   );
 }
