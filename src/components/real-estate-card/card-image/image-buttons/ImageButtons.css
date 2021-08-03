@@ -6,6 +6,7 @@
   background: rgb(57, 54, 68, 0.7);
   border-bottom-right-radius: 5px;
   width: 22%;
+  min-width: 80px;
   padding: 5px 5px 5px 15px;
   color: #fff;
 }

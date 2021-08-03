@@ -1,7 +1,6 @@
 .RealEstateCardCardImageContainer {
   position: relative;
   display: flex;
-  max-width: 390px;
   height: auto;
 }
 

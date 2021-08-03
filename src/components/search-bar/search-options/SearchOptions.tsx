@@ -14,7 +14,7 @@ export default function SearchOptions(): JSX.Element {
       value: 'local',
       text: 'Search here',
     },
-    { id: 'web', value: 'web', text: 'Search The Web' },
+    { id: 'web', value: 'web', text: 'Search the Web' },
   ];
   const searchTypes = [
     {

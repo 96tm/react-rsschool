@@ -1,23 +1,30 @@
 import React from 'react';
 import './RealEstateCard.css';
-import agentLogo from 'public/assets/icons/company-logo.png';
-import realEstateImage from 'public/assets/images/real-estate.jpg';
 import CardImage from './card-image/CardImage';
 import Price from './price-section/PriceSection';
 import Content from './content/Content';
 import Footer from './footer/Footer';
+import { IRealEstateCardProps } from './interfaces/IRealEstateCardProps';
 
-export default function RealEstateCard(): JSX.Element {
+export default function RealEstateCard({
+  id,
+  image,
+  price,
+  comment,
+  descriptionTitle,
+  descriptionText,
+  agentLogo,
+}: IRealEstateCardProps): JSX.Element {
   return (
-    <div className="RealEstateCard">
-      <CardImage src={realEstateImage} />
-      <Price price="₤20,500,00" comment="Guide Price" />
+    <div className="RealEstateCard" id={id}>
+      <CardImage src={image} />
+      <Price price={price} comment={comment} />
       <Content
-        descriptionTitle="5 bedroom apartment for sale"
-        descriptionText="Eaton Square, London"
+        descriptionTitle={descriptionTitle}
+        descriptionText={descriptionText}
         agentLogo={agentLogo}
       />
-      <Footer />
+      <Footer cardId={id} />
     </div>
   );
 }

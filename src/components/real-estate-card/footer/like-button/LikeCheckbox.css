@@ -28,9 +28,10 @@
   padding-top: 30%;
   background: no-repeat url('public/assets/icons/heart.svg');
   background-size: 100%;
+  filter: none;
 }
 
-.RealEstateCard__LikeCheckbox:checked ~ .RealEstateCard__LikeCheckboxIcon {
+.RealEstateCard__LikeCheckbox:checked + .RealEstateCard__LikeCheckboxIcon {
   filter: invert(27%) sepia(90%) saturate(7173%) hue-rotate(356deg)
     brightness(93%) contrast(118%);
 }

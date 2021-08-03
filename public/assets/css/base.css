@@ -7,6 +7,8 @@
     brightness(130%) contrast(89%);
   --search-input-width: 68%;
   --search-input-max-width: 720px;
+  --guidelines-width: 720px;
+  --cards-guidelines-with: 1440px;
 }
 
 *,
@@ -22,9 +24,32 @@
   text-overflow: ellipsis;
 }
 
+html,
+body,
+#root {
+  height: 100%;
+}
+
 .App {
   display: flex;
+  min-height: 100%;
   align-items: center;
   flex-direction: column;
   padding-top: 50px;
+  background: linear-gradient(
+    90deg,
+    rgba(84, 98, 110, 1) 0%,
+    rgba(84, 98, 110, 1) 0%,
+    rgba(101, 114, 130, 1) 100%
+  );
+}
+
+.cards {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  row-gap: 20px;
+  padding: 50px 100px;
+  width: 100%;
+  max-width: var(--cards-guidelines-width);
 }

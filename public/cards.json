@@ -1,0 +1,83 @@
+[
+  {
+    "id": "1",
+    "image": "/public/assets/images/card1.jpg",
+    "price": "₤20,500,00",
+    "comment": "Guide Price",
+    "descriptionTitle": "5 bedroom apartment for sale",
+    "descriptionText": "Eaton Square, London",
+    "agentLogo": "/public/assets/icons/company-logo.png"
+  },
+  {
+    "id": "2",
+    "image": "/public/assets/images/card2.jpg",
+    "price": "₤20,500,00",
+    "comment": "Guide Price",
+    "descriptionTitle": "5 bedroom apartment for sale",
+    "descriptionText": "Eaton Square, London",
+    "agentLogo": "/public/assets/icons/company-logo.png"
+  },
+  {
+    "id": "3",
+    "image": "/public/assets/images/card1.jpg",
+    "price": "₤20,500,00",
+    "comment": "Guide Price",
+    "descriptionTitle": "5 bedroom apartment for sale",
+    "descriptionText": "Eaton Square, London",
+    "agentLogo": "/public/assets/icons/company-logo.png"
+  },
+  {
+    "id": "4",
+    "image": "/public/assets/images/card1.jpg",
+    "price": "₤20,500,00",
+    "comment": "Guide Price",
+    "descriptionTitle": "5 bedroom apartment for sale",
+    "descriptionText": "Eaton Square, London",
+    "agentLogo": "/public/assets/icons/company-logo.png"
+  },
+  {
+    "id": "5",
+    "image": "/public/assets/images/card1.jpg",
+    "price": "₤20,500,00",
+    "comment": "Guide Price",
+    "descriptionTitle": "5 bedroom apartment for sale",
+    "descriptionText": "Eaton Square, London",
+    "agentLogo": "/public/assets/icons/company-logo.png"
+  },
+  {
+    "id": "6",
+    "image": "/public/assets/images/card1.jpg",
+    "price": "₤20,500,00",
+    "comment": "Guide Price",
+    "descriptionTitle": "5 bedroom apartment for sale",
+    "descriptionText": "Eaton Square, London",
+    "agentLogo": "/public/assets/icons/company-logo.png"
+  },
+  {
+    "id": "7",
+    "image": "/public/assets/images/card1.jpg",
+    "price": "₤20,500,00",
+    "comment": "Guide Price",
+    "descriptionTitle": "5 bedroom apartment for sale",
+    "descriptionText": "Eaton Square, London",
+    "agentLogo": "/public/assets/icons/company-logo.png"
+  },
+  {
+    "id": "8",
+    "image": "/public/assets/images/card1.jpg",
+    "price": "₤20,500,00",
+    "comment": "Guide Price",
+    "descriptionTitle": "5 bedroom apartment for sale",
+    "descriptionText": "Eaton Square, London",
+    "agentLogo": "/public/assets/icons/company-logo.png"
+  },
+  {
+    "id": "9",
+    "image": "/public/assets/images/card1.jpg",
+    "price": "₤20,500,00",
+    "comment": "Guide Price",
+    "descriptionTitle": "5 bedroom apartment for sale",
+    "descriptionText": "Eaton Square, London",
+    "agentLogo": "/public/assets/icons/company-logo.png"
+  }
+]
