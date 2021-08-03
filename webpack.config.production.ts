@@ -8,7 +8,7 @@ import common from './webpack.config.common';
 const config: webpack.Configuration = merge(common, {
   mode: 'production',
   output: {
-    path: path.resolve(__dirname, 'dist1'),
+    path: path.resolve(__dirname, 'dist'),
     filename: '[name].[contenthash].js',
     publicPath: '',
   },
