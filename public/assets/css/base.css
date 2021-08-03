@@ -53,3 +53,10 @@ body,
   width: 100%;
   max-width: var(--cards-guidelines-width);
 }
+.cards::after {
+  content: '';
+  min-width: 270px;
+  max-width: 390px;
+  width: 30%;
+  height: 0;
+}

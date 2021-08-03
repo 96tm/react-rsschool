@@ -19,16 +19,16 @@
   },
   {
     "id": "3",
-    "image": "/public/assets/images/card1.jpg",
+    "image": "/public/assets/images/card3.jpg",
     "price": "₤20,500,00",
     "comment": "Guide Price",
     "descriptionTitle": "5 bedroom apartment for sale",
     "descriptionText": "Eaton Square, London",
-    "agentLogo": "/public/assets/icons/company-logo.png"
+    "agentLogo": "/public/assets/icons/howard-hannah-logo.svg"
   },
   {
     "id": "4",
-    "image": "/public/assets/images/card1.jpg",
+    "image": "/public/assets/images/card4.jpg",
     "price": "₤20,500,00",
     "comment": "Guide Price",
     "descriptionTitle": "5 bedroom apartment for sale",
@@ -37,7 +37,7 @@
   },
   {
     "id": "5",
-    "image": "/public/assets/images/card1.jpg",
+    "image": "/public/assets/images/card5.jpg",
     "price": "₤20,500,00",
     "comment": "Guide Price",
     "descriptionTitle": "5 bedroom apartment for sale",
@@ -46,7 +46,7 @@
   },
   {
     "id": "6",
-    "image": "/public/assets/images/card1.jpg",
+    "image": "/public/assets/images/card6.jpg",
     "price": "₤20,500,00",
     "comment": "Guide Price",
     "descriptionTitle": "5 bedroom apartment for sale",
@@ -55,7 +55,7 @@
   },
   {
     "id": "7",
-    "image": "/public/assets/images/card1.jpg",
+    "image": "/public/assets/images/card7.jpg",
     "price": "₤20,500,00",
     "comment": "Guide Price",
     "descriptionTitle": "5 bedroom apartment for sale",
@@ -64,7 +64,7 @@
   },
   {
     "id": "8",
-    "image": "/public/assets/images/card1.jpg",
+    "image": "/public/assets/images/card8.jpg",
     "price": "₤20,500,00",
     "comment": "Guide Price",
     "descriptionTitle": "5 bedroom apartment for sale",
@@ -73,7 +73,7 @@
   },
   {
     "id": "9",
-    "image": "/public/assets/images/card1.jpg",
+    "image": "/public/assets/images/card9.jpg",
     "price": "₤20,500,00",
     "comment": "Guide Price",
     "descriptionTitle": "5 bedroom apartment for sale",
