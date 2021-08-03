@@ -1,0 +1,11 @@
+.SearchBar {
+  display: flex;
+  align-items: center;
+  width: 80%;
+  max-width: var(--guidelines-width);
+  height: 170px;
+  background: rgb(77, 90, 101);
+  border-radius: 5px;
+  font-family: Nunito, sans-serif;
+  color: var(--white-text);
+}

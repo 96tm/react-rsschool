@@ -1,0 +1,46 @@
+.RealEstateCard__LikeCheckboxLabel {
+  position: absolute;
+  left: 50%;
+  top: 42%;
+  width: 22%;
+  padding-top: 22%;
+  border-radius: 50%;
+  border: 3px solid var(--gray-border-transparent);
+  box-shadow: var(--gray-border-transparent) 0 1px 0 0 inset;
+  transform: translate(-50%, 0);
+  cursor: pointer;
+}
+
+.RealEstateCard__LikeCheckbox {
+  position: absolute;
+  visibility: hidden;
+  left: 50%;
+  top: 50%;
+  width: 1px;
+}
+
+.RealEstateCard__LikeCheckboxIcon {
+  position: absolute;
+  left: 50%;
+  top: 10%;
+  transform: translate(-50%, 0);
+  width: 30%;
+  padding-top: 30%;
+  background: no-repeat url('public/assets/icons/heart.svg');
+  background-size: 100%;
+  filter: none;
+}
+
+.RealEstateCard__LikeCheckbox:checked + .RealEstateCard__LikeCheckboxIcon {
+  filter: invert(27%) sepia(90%) saturate(7173%) hue-rotate(356deg)
+    brightness(93%) contrast(118%);
+}
+
+.RealEstateCard__LikeCheckboxLabel:hover {
+  background: var(--gray-border-transparent);
+}
+
+.RealEstateCard__LikeCheckboxLabel:hover > .RealEstateCard__LikeCheckboxIcon {
+  filter: invert(27%) sepia(90%) saturate(7173%) hue-rotate(356deg)
+    brightness(93%) contrast(118%);
+}

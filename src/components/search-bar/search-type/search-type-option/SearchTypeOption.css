@@ -1,0 +1,42 @@
+.SearchBar__SearchTypeOptionContainer {
+  position: relative;
+  width: 20px;
+  height: 35px;
+  cursor: pointer;
+}
+
+.SearchBar__SearchTypeOption {
+  position: absolute;
+  left: 50%;
+  width: 0;
+  opacity: 0;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+}
+
+.SearchBar__SearchTypeOptionIcon {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  filter: var(--filter-gray);
+}
+
+.SearchBar__SearchTypeOption:checked ~ .SearchBar__SearchTypeOptionIcon,
+.SearchBar__SearchTypeOption:hover ~ .SearchBar__SearchTypeOptionIcon {
+  filter: initial;
+}
+
+.SearchBar__SearchTypeOption:checked
+  ~ .SearchBar__SearchTypeOptionIcon::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 0;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid #fff;
+  transform: translate(-50%, 100%);
+}

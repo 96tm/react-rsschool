@@ -1,0 +1,5 @@
+.RealEstateCard__Content {
+  display: flex;
+  justify-content: space-between;
+  padding: 25px 15px 20px;
+}

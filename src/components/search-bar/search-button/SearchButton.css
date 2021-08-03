@@ -1,0 +1,12 @@
+.SearchBar__SearchButton {
+  width: 100px;
+  height: 40px;
+  border-radius: 5px;
+  border: none;
+  color: var(--gray-text);
+  cursor: pointer;
+}
+
+.SearchBar__SearchButton:hover {
+  filter: var(--filter-gray);
+}

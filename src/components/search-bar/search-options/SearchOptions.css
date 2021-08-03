@@ -1,0 +1,6 @@
+.SearchBar__SearchOptions {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  padding-top: 15px;
+}

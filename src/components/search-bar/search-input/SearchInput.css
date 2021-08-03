@@ -1,0 +1,26 @@
+.SearchBar__SearchInputWrap {
+  position: relative;
+  width: 100%;
+}
+
+.SearchBar__SearchInputWrap::before {
+  content: '';
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: no-repeat url('public/assets/icons/standard.png');
+  background-size: 100%;
+  filter: var(--filter-gray);
+}
+
+.SearchBar__SearchInput {
+  padding: 0 35px;
+  border-radius: 5px;
+  line-height: 40px;
+  border: none;
+  color: var(--gray-text);
+  width: 100%;
+}

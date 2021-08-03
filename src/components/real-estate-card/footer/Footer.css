@@ -1,0 +1,8 @@
+.RealEstateCard__Footer {
+  display: flex;
+  position: relative;
+  align-items: flex-start;
+  justify-content: space-between;
+  overflow: hidden;
+  padding: 0 15px 15px;
+}

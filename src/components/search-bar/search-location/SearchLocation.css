@@ -1,0 +1,27 @@
+.SearchBar__SearchLocation {
+  display: flex;
+  flex-flow: row wrap;
+  column-gap: 15px;
+}
+
+.SearchBar__SearchLocationLabel {
+  display: flex;
+  height: 15px;
+  font-size: 14px;
+}
+
+.SearchBar__SearchLocationOption {
+  align-self: flex-end;
+  margin-right: 5px;
+  width: 15px;
+  height: 15px;
+}
+
+.SearchBar__SearchLocationLabel:hover {
+  color: var(--gray-text);
+}
+
+.SearchBar__SearchLocationLabel,
+.SearchBar__SearchLocationOption {
+  cursor: pointer;
+}
