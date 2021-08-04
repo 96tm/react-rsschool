@@ -1,8 +1,30 @@
 .DonationForm {
+  position: relative;
   width: 920px;
   height: 820px;
   box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.5);
 }
 .DonationForm__header {
   background: var(--bg-orange);
+  font: normal 500 42px/51px var(--font-main);
+  color: #fff;
+  padding: 42px 201px;
+  text-align: center;
+  text-transform: uppercase;
+}
+.DonationForm__container {
+  padding: 0 120px;
+}
+.DonationForm__subheader {
+  padding: 50px 0;
+  font: normal 600 18px/150% var(--font-main);
+}
+.DonationForm__subheader::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 222px;
+  width: 100%;
+  height: 1px;
+  background: rgba(164, 168, 174, 1);
 }

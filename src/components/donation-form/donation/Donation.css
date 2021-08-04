@@ -1,0 +1,101 @@
+.Donation__title {
+  font: normal 400 14px/150% var(--font-main);
+}
+.Donation__Values {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 40px;
+}
+.Donation__value-option-label,
+.Donation__custom-donation-option-label {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 65px;
+  font: normal 600 18px/22px var(--font-main);
+  color: #fff;
+  cursor: pointer;
+}
+.Donation__value-option,
+.Donation__custom-donation-option {
+  position: absolute;
+  visibility: hidden;
+}
+.Donation__overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  border-radius: 5px;
+  background: rgba(0, 160, 146, 0.5);
+}
+.Donation__value-option:checked ~ .Donation__overlay,
+.Donation__custom-donation-option:checked ~ .Donation__overlay {
+  background: var(--turquoise);
+}
+.Donation__custom-donation {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 40px;
+}
+.Donation__custom-donation-option-label {
+  width: 200px;
+}
+.Donation__custom-donation-input {
+  width: 200px;
+  border-radius: 5px;
+}
+.Donation__donation-type-label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding-bottom: 50px;
+}
+.Donation__donation-type {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  margin-right: 20px;
+  visibility: hidden;
+}
+.Donation__donation-type-checkmark {
+  content: '';
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border: 1px solid #000;
+}
+.Donation__donation-type-checkmark::after {
+  content: '';
+  position: absolute;
+  display: none;
+}
+.Donation__donation-type:checked ~ .Donation__donation-type-checkmark {
+  background: var(--turquoise);
+}
+.Donation__donation-type:checked ~ .Donation__donation-type-checkmark::after {
+  content: '';
+  display: block;
+  left: 9px;
+  top: 5px;
+  width: 5px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+.Donation__button-submit {
+  display: block;
+  width: 200px;
+  height: 75px;
+  margin: 0 105px 0 auto;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  font: normal 600 18px/22px var(--font-main);
+  background: var(--turquoise);
+  cursor: pointer;
+}

@@ -1,7 +1,13 @@
 :root {
   --bg-orange: #f58021;
+  --font-main: 'Montserrat';
+  --turquoise: rgb(0, 160, 146);
 }
 
 html {
   font-family: 'Montserrat', sans-serif;
+}
+
+.blue {
+  color: #00a092;
 }
