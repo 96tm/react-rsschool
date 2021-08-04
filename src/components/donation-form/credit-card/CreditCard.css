@@ -1,0 +1,53 @@
+.CreditCard {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.CreditCard__input {
+  display: block;
+}
+
+.CreditCard__card-number,
+.CreditCard__card-cvv,
+.CreditCard__card-month,
+.CreditCard__card-year {
+  height: 65px;
+  border-radius: 5px;
+}
+
+.CreditCard__card-number-label {
+  width: 65%;
+}
+.CreditCard__card-cvv-label {
+  width: 29%;
+}
+.CreditCard__card-year-label {
+  display: flex;
+  align-items: flex-end;
+}
+.CreditCard__card-month-label,
+.CreditCard__card-year-label {
+  width: 30%;
+}
+.CreditCard__card-month,
+.CreditCard__card-year {
+  width: 100%;
+  background: transparent;
+}
+.CreditCard__select-container {
+  position: relative;
+  width: 100%;
+}
+.CreditCard__select-container::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 32px;
+  background: var(--turquoise) no-repeat url('public/assets/icons/tick.svg')
+    center;
+  border: 1px solid #000;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}

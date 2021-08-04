@@ -1,5 +1,7 @@
 import React from 'react';
 import './Donation.css';
+import CreditCard from '../credit-card/CreditCard';
+import PersonInfo from '../person-info/PersonInfo';
 
 export default function Donation(): JSX.Element {
   return (
@@ -129,9 +131,11 @@ export default function Donation(): JSX.Element {
         <span className="Donation__donation-type-checkmark" />
         Make this a monthly recurring gift
       </label>
+      <PersonInfo />
       <button type="button" className="Donation__button-submit">
         Submit
       </button>
+      <CreditCard />
     </div>
   );
 }
