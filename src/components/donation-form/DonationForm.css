@@ -1,0 +1,8 @@
+.DonationForm {
+  width: 920px;
+  height: 820px;
+  box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.5);
+}
+.DonationForm__header {
+  background: var(--bg-orange);
+}

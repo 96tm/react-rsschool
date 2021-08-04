@@ -1,3 +1,4 @@
+import path from 'path';
 import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
@@ -39,6 +40,9 @@ const config: webpack.Configuration = {
     ],
   },
   resolve: {
+    alias: {
+      public: path.resolve(__dirname, 'public'),
+    },
     extensions: ['.tsx', '.ts', '.js'],
   },
   plugins: [
