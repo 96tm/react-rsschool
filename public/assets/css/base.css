@@ -1,3 +1,7 @@
 :root {
   --bg-orange: #f58021;
 }
+
+html {
+  font-family: 'Montserrat', sans-serif;
+}
