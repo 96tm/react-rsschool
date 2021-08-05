@@ -40,6 +40,9 @@
   background: var(--turquoise);
   cursor: pointer;
 }
+.DonationForm__button:hover {
+  box-shadow: 0 9px 12px 0 rgb(0 0 0 / 50%);
+}
 .DonationForm__button-next::after,
 .DonationForm__button-submit::after {
   content: '';

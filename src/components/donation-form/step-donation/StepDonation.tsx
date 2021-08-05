@@ -9,8 +9,8 @@ export default function StepDonation({
   customDonationAmount,
   handleChange,
 }: IDonationProps): JSX.Element | null {
-  const STEP = 1;
-  if (step !== STEP) {
+  const FORM_STEP = 1;
+  if (step !== FORM_STEP) {
     return null;
   }
   return (

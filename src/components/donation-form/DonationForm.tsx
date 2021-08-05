@@ -1,6 +1,7 @@
 import React, { useState, FormEvent } from 'react';
 import './DonationForm.css';
 import StepDonation from './step-donation/StepDonation';
+import StepCreditCard from './step-credit-card/StepCreditCard';
 
 interface IDonationFormState {
   [key: string]: string | number | undefined | boolean;
@@ -41,7 +42,7 @@ export default function DonationForm(): JSX.Element {
     const target = event.target as HTMLInputElement | HTMLSelectElement;
     const { name } = target;
     const { value } = target;
-    let stateValue: string | number | boolean;
+    let stateValue: string | number | boolean = value;
     if (name === 'isMonthly') {
       setState((previousState) => ({
         ...previousState,
@@ -133,15 +134,25 @@ export default function DonationForm(): JSX.Element {
           customDonationAmount={state.customDonationAmount}
           handleChange={handleChange}
         />
+        <StepCreditCard
+          step={state.step}
+          creditCardNumber={state.creditCardNumber}
+          creditCardCVV={state.creditCardCVV}
+          creditCardMonth={state.creditCardMonth}
+          creditCardYear={state.creditCardYear}
+          handleChange={handleChange}
+        />
         <div className="DonationForm__buttons-container">
           {getPreviousButton()}
           {getNextButton()}
-          <button
-            type="button"
-            className="DonationForm__button-submit DonationForm__button"
-          >
-            Submit
-          </button>
+          {state.step === LAST_STEP ? (
+            <button
+              type="button"
+              className="DonationForm__button-submit DonationForm__button"
+            >
+              Submit
+            </button>
+          ) : null}
         </div>
       </div>
     </div>
