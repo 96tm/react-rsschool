@@ -1,13 +1,13 @@
-.PersonInfo {
-  padding-top: 50px;
+.StepPersonInfo {
+  display: flex;
+  flex-direction: column;
+  row-gap: 50px;
 }
-
-.PersonInfo__label {
+.StepPersonInfo__label {
   display: block;
-  padding-bottom: 50px;
 }
 
-.PersonInfo__input {
+.StepPersonInfo__input {
   display: block;
   width: 100%;
   height: 60px;
@@ -15,7 +15,7 @@
   padding-left: 20px;
   border-radius: 5px;
 }
-.PersonInfo__date-of-birth-label {
+.StepPersonInfo__date-of-birth-label {
   width: 30%;
   cursor: pointer;
 }

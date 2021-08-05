@@ -21,7 +21,10 @@
   height: 65px;
   border-radius: 5px;
 }
-
+.StepCreditCard__card-cvv {
+  font-weight: 900;
+  font-size: 20px;
+}
 .StepCreditCard__card-number-label {
   width: 65%;
 }
@@ -43,6 +46,9 @@
   width: 100%;
   background: transparent;
   cursor: pointer;
+}
+.StepCreditCard__card-month {
+  margin-top: 10px;
 }
 .StepCreditCard__select-container {
   position: relative;

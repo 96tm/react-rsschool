@@ -1,6 +1,9 @@
 .DonationForm {
   position: relative;
+  display: flex;
+  flex-direction: column;
   width: 920px;
+  min-height: 800px;
   padding-bottom: 50px;
   box-shadow: 0 4px 50px 0 rgba(0, 0, 0, 0.5);
 }
@@ -13,6 +16,9 @@
   text-transform: uppercase;
 }
 .DonationForm__container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
   padding: 0 120px;
 }
 .DonationForm__subheader {
@@ -69,5 +75,5 @@
   display: flex;
   justify-content: flex-end;
   column-gap: 20px;
-  padding-top: 50px;
+  margin-top: auto;
 }

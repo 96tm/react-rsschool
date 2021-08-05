@@ -1,7 +1,7 @@
 import React, { ChangeEvent } from 'react';
 import './StepCreditCard.css';
 
-interface ICreditCardProps {
+interface IStepCreditCardProps {
   step: number;
   creditCardYear: string;
   creditCardMonth: string;
@@ -17,7 +17,7 @@ export default function StepCreditCard({
   creditCardNumber,
   creditCardCVV,
   handleChange,
-}: ICreditCardProps): JSX.Element | null {
+}: IStepCreditCardProps): JSX.Element | null {
   const FORM_STEP = 3;
   const NUMBER_OF_MONTHS = 12;
   const NUMBER_OF_YEARS = 5;
@@ -34,6 +34,7 @@ export default function StepCreditCard({
         <span className="blue">*</span> Credit Card Number
         <input
           type="text"
+          placeholder="xxxx-xxxx-xxxx-xxxx"
           value={creditCardNumber}
           onChange={handleChange}
           name="creditCardNumber"
@@ -46,7 +47,8 @@ export default function StepCreditCard({
       >
         <span className="blue">*</span> CVV Number
         <input
-          type="text"
+          type="password"
+          placeholder="***"
           value={creditCardCVV}
           onChange={handleChange}
           minLength={CVV_LENGTH}
@@ -68,6 +70,13 @@ export default function StepCreditCard({
             id="StepCreditCard__card-month"
             className="StepCreditCard__card-month StepCreditCard__input"
           >
+            <option
+              value=""
+              disabled
+              key="StepCreditCard__card-month-placeholder"
+            >
+              Month
+            </option>
             {Array(NUMBER_OF_MONTHS)
               .fill(0)
               .map((_, index) => {
@@ -96,6 +105,13 @@ export default function StepCreditCard({
             id="StepCreditCard__card-year"
             className="StepCreditCard__card-year StepCreditCard__input"
           >
+            <option
+              value=""
+              disabled
+              key="StepCreditCard__card-year-placeholder"
+            >
+              Year
+            </option>
             {Array(NUMBER_OF_YEARS)
               .fill(0)
               .map((_, index) => {

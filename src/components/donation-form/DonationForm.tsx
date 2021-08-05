@@ -2,18 +2,18 @@ import React, { useState, FormEvent } from 'react';
 import './DonationForm.css';
 import StepDonation from './step-donation/StepDonation';
 import StepCreditCard from './step-credit-card/StepCreditCard';
+import StepPersonInfo from './step-person/StepPersonInfo';
 
 interface IDonationFormState {
   [key: string]: string | number | undefined | boolean;
   step: number;
-  firstName: string;
-  lastName: string;
-  email: string;
+  personName: string;
+  personEmail: string;
+  personDateOfBirth: string;
   creditCardNumber: string;
   creditCardCVV: string;
   creditCardMonth: string;
   creditCardYear: string;
-  dateOfBirth: string;
   isMonthly: boolean;
   donationAmount: number;
   customDonationAmount: number;
@@ -21,14 +21,13 @@ interface IDonationFormState {
 
 const defaultFormValues: IDonationFormState = {
   step: 1,
-  firstName: '',
-  lastName: '',
-  email: '',
+  personName: '',
+  personEmail: '',
+  personDateOfBirth: '',
   creditCardNumber: '',
   creditCardCVV: '',
   creditCardMonth: '',
   creditCardYear: '',
-  dateOfBirth: '',
   isMonthly: false,
   donationAmount: 30,
   customDonationAmount: 40,
@@ -140,6 +139,13 @@ export default function DonationForm(): JSX.Element {
           creditCardCVV={state.creditCardCVV}
           creditCardMonth={state.creditCardMonth}
           creditCardYear={state.creditCardYear}
+          handleChange={handleChange}
+        />
+        <StepPersonInfo
+          step={state.step}
+          personName={state.personName}
+          personEmail={state.personEmail}
+          personDateOfBirth={state.personDateOfBirth}
           handleChange={handleChange}
         />
         <div className="DonationForm__buttons-container">
