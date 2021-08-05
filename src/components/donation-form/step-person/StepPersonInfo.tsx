@@ -6,6 +6,7 @@ interface IStepPersonInfoProps {
   personName: string;
   personEmail: string;
   personDateOfBirth: string;
+  hasAgreedToPrivacyPolicy: boolean;
   handleChange: (event: ChangeEvent) => void;
 }
 
@@ -14,6 +15,7 @@ export default function StepPersonInfo({
   personName,
   personEmail,
   personDateOfBirth,
+  hasAgreedToPrivacyPolicy,
   handleChange,
 }: IStepPersonInfoProps): JSX.Element | null {
   const FORM_STEP = 2;
@@ -65,6 +67,21 @@ export default function StepPersonInfo({
           id="StepPersonInfo__date-of-birth"
           className="StepPersonInfo__date-of-birth StepPersonInfo__input"
         />
+      </label>
+      <label
+        htmlFor="StepPersonInfo__privacy-policy"
+        className="StepPersonInfo__privacy-policy-label"
+      >
+        <input
+          type="checkbox"
+          checked={hasAgreedToPrivacyPolicy}
+          onChange={handleChange}
+          name="hasAgreedToPrivacyPolicy"
+          id="StepPersonInfo__privacy-policy"
+          className="StepPersonInfo__privacy-policy"
+        />
+        <span className="StepPersonInfo__privacy-policy-checkmark" />I agree to
+        the privacy policy
       </label>
     </div>
   );

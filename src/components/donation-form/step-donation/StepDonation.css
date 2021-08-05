@@ -63,33 +63,32 @@
   display: inline-block;
   width: 30px;
   height: 30px;
-  margin-right: 20px;
+  margin-right: 50px;
   visibility: hidden;
 }
-.StepDonation__donation-type-checkmark {
+.StepDonation__donation-type-slider {
   position: absolute;
-  width: 30px;
+  width: 60px;
   height: 30px;
-  border: 1px solid var(--turquoise);
+  border-radius: 5px;
+  background: #ccc;
+  transition: 0.5s;
 }
-.StepDonation__donation-type-checkmark::after {
-  content: '';
+.StepDonation__donation-type-slider::before {
   position: absolute;
-  display: none;
+  content: '';
+  height: 25px;
+  width: 25px;
+  left: 2px;
+  top: 10%;
+  border-radius: 50%;
+  background-color: white;
+  transition: 0.5s;
 }
-.StepDonation__donation-type:checked ~ .StepDonation__donation-type-checkmark {
+.StepDonation__donation-type:checked ~ .StepDonation__donation-type-slider {
   background: var(--turquoise);
 }
 .StepDonation__donation-type:checked
-  ~ .StepDonation__donation-type-checkmark::after {
-  content: '';
-  position: absolute;
-  display: block;
-  left: 50%;
-  top: 50%;
-  width: 15px;
-  height: 20px;
-  border: solid white;
-  border-width: 0 3px 3px 0;
-  transform: translate(-50%, -65%) rotate(45deg);
+  ~ .StepDonation__donation-type-slider::before {
+  transform: translateX(31px);
 }

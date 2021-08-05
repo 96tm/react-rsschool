@@ -3,21 +3,7 @@ import './DonationForm.css';
 import StepDonation from './step-donation/StepDonation';
 import StepCreditCard from './step-credit-card/StepCreditCard';
 import StepPersonInfo from './step-person/StepPersonInfo';
-
-interface IDonationFormState {
-  [key: string]: string | number | undefined | boolean;
-  step: number;
-  personName: string;
-  personEmail: string;
-  personDateOfBirth: string;
-  creditCardNumber: string;
-  creditCardCVV: string;
-  creditCardMonth: string;
-  creditCardYear: string;
-  isMonthly: boolean;
-  donationAmount: number;
-  customDonationAmount: number;
-}
+import IDonationFormState from '../../models/IDonationFormState';
 
 const defaultFormValues: IDonationFormState = {
   step: 1,
@@ -31,6 +17,7 @@ const defaultFormValues: IDonationFormState = {
   isMonthly: false,
   donationAmount: 30,
   customDonationAmount: 40,
+  hasAgreedToPrivacyPolicy: false,
 };
 
 export default function DonationForm(): JSX.Element {
@@ -42,10 +29,10 @@ export default function DonationForm(): JSX.Element {
     const { name } = target;
     const { value } = target;
     let stateValue: string | number | boolean = value;
-    if (name === 'isMonthly') {
+    if (['isMonthly', 'hasAgreedToPrivacyPolicy'].includes(name)) {
       setState((previousState) => ({
         ...previousState,
-        isMonthly: !previousState.isMonthly,
+        [name]: !previousState[name],
       }));
       return;
     }
@@ -146,6 +133,7 @@ export default function DonationForm(): JSX.Element {
           personName={state.personName}
           personEmail={state.personEmail}
           personDateOfBirth={state.personDateOfBirth}
+          hasAgreedToPrivacyPolicy={state.hasAgreedToPrivacyPolicy}
           handleChange={handleChange}
         />
         <div className="DonationForm__buttons-container">
@@ -153,7 +141,7 @@ export default function DonationForm(): JSX.Element {
           {getNextButton()}
           {state.step === LAST_STEP ? (
             <button
-              type="button"
+              type="submit"
               className="DonationForm__button-submit DonationForm__button"
             >
               Submit

@@ -19,3 +19,46 @@
   width: 30%;
   cursor: pointer;
 }
+
+.StepPersonInfo__privacy-policy-label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  transform: translateY(-100%);
+  cursor: pointer;
+}
+.StepPersonInfo__privacy-policy {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  margin-right: 20px;
+  visibility: hidden;
+}
+.StepPersonInfo__privacy-policy-checkmark {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--turquoise);
+}
+.StepPersonInfo__privacy-policy-checkmark::after {
+  content: '';
+  position: absolute;
+  display: none;
+}
+.StepPersonInfo__privacy-policy:checked
+  ~ .StepPersonInfo__privacy-policy-checkmark {
+  background: var(--turquoise);
+}
+.StepPersonInfo__privacy-policy:checked
+  ~ .StepPersonInfo__privacy-policy-checkmark::after {
+  content: '';
+  position: absolute;
+  display: block;
+  left: 50%;
+  top: 50%;
+  width: 15px;
+  height: 20px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: translate(-50%, -65%) rotate(45deg);
+}

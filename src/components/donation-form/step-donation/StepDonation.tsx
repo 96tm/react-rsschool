@@ -1,6 +1,13 @@
-import React from 'react';
+import React, { FormEvent } from 'react';
 import './StepDonation.css';
-import IDonationProps from './IDonationProps';
+
+interface IDonationProps {
+  step: number;
+  donationAmount: number;
+  isMonthly: boolean;
+  customDonationAmount: number;
+  handleChange: (event: FormEvent) => void;
+}
 
 export default function StepDonation({
   step,
@@ -157,7 +164,7 @@ export default function StepDonation({
           id="StepDonation__donation-type"
           name="isMonthly"
         />
-        <span className="StepDonation__donation-type-checkmark" />
+        <span className="StepDonation__donation-type-slider" />
         Make this a monthly recurring gift
       </label>
     </div>
