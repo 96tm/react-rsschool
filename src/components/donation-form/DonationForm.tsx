@@ -4,6 +4,7 @@ import StepDonation from './step-donation/StepDonation';
 import StepCreditCard from './step-credit-card/StepCreditCard';
 import StepPersonInfo from './step-person/StepPersonInfo';
 import IDonationFormState from '../../models/IDonationFormState';
+import IAddCard from '../../models/IAddCard';
 
 const defaultFormValues: IDonationFormState = {
   step: 1,
@@ -20,7 +21,11 @@ const defaultFormValues: IDonationFormState = {
   hasAgreedToPrivacyPolicy: false,
 };
 
-export default function DonationForm(): JSX.Element {
+export default function DonationForm({
+  addCard,
+}: {
+  addCard: IAddCard;
+}): JSX.Element {
   const LAST_STEP = 3;
   const [state, setState] = useState<IDonationFormState>(defaultFormValues);
 
@@ -43,6 +48,13 @@ export default function DonationForm(): JSX.Element {
       ...previousState,
       [name]: stateValue,
     }));
+  };
+
+  const handleSubmit = (event: FormEvent) => {
+    console.log('submit', event.target);
+    console.log(state);
+    addCard({ ...state });
+    event.preventDefault();
   };
 
   const renderNextStep: () => void = () => {
@@ -109,7 +121,7 @@ export default function DonationForm(): JSX.Element {
   };
 
   return (
-    <div className="DonationForm">
+    <form action="" className="DonationForm" onSubmit={handleSubmit}>
       <header className="DonationForm__header">Donation</header>
       <div className="DonationForm__container">
         <div className="DonationForm__subheader">{getSubheaderText()}</div>
@@ -149,6 +161,6 @@ export default function DonationForm(): JSX.Element {
           ) : null}
         </div>
       </div>
-    </div>
+    </form>
   );
 }
