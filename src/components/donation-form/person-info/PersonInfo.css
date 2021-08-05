@@ -1,13 +1,21 @@
-.Donation__name-label,
-.Donation__email-label {
+.PersonInfo {
   padding-top: 50px;
 }
-.Donation__name,
-.Donation__email {
+
+.PersonInfo__label {
+  display: block;
+  padding-bottom: 50px;
+}
+
+.PersonInfo__input {
   display: block;
   width: 100%;
   height: 60px;
   margin-top: 10px;
   padding-left: 20px;
   border-radius: 5px;
+}
+.PersonInfo__date-of-birth-label {
+  width: 30%;
+  cursor: pointer;
 }

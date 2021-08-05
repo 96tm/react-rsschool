@@ -4,10 +4,20 @@
   --turquoise: rgb(0, 160, 146);
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 html {
   font-family: 'Montserrat', sans-serif;
 }
 
 .blue {
   color: #00a092;
+}
+
+.hidden {
+  visibility: hidden;
 }

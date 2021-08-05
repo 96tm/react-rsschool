@@ -28,3 +28,43 @@
   height: 1px;
   background: rgba(164, 168, 174, 1);
 }
+.DonationForm__button {
+  display: block;
+  position: relative;
+  width: 200px;
+  height: 75px;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  font: normal 600 18px/22px var(--font-main);
+  background: var(--turquoise);
+  cursor: pointer;
+}
+.DonationForm__button-next::after,
+.DonationForm__button-submit::after {
+  content: '';
+  position: absolute;
+  width: 25px;
+  height: 22px;
+  margin-left: 10px;
+  background: no-repeat url('public/assets/icons/arrow-right.svg');
+}
+.DonationForm__button-back::before {
+  content: '';
+  position: absolute;
+  width: 25px;
+  height: 22px;
+  left: 40px;
+  transform: rotate(180deg);
+  background: no-repeat url('public/assets/icons/arrow-right.svg');
+}
+.DonationForm__button-submit {
+  background: var(--bg-orange);
+}
+
+.DonationForm__buttons-container {
+  display: flex;
+  justify-content: flex-end;
+  column-gap: 20px;
+  padding-top: 50px;
+}
