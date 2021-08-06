@@ -28,12 +28,38 @@ export default function DonationForm({
 }): JSX.Element {
   const LAST_STEP = 3;
   const [state, setState] = useState<IDonationFormState>(defaultFormValues);
+  const [errors, setErrors] = useState<Record<string, string>>({});
+
+  const validateDonationStep = () => {
+    const stepErrors: Record<string, string> = {};
+
+    if (state.customDonationAmount <= 0) {
+      stepErrors.customDonationAmount =
+        'Donation amount must be greater than zero';
+    }
+    setErrors({ ...stepErrors });
+    if (Object.keys(stepErrors).length) {
+      return false;
+    }
+    return true;
+  };
+
+  const validate = () => {
+    switch (state.step) {
+      case 1:
+        return validateDonationStep();
+      default:
+        break;
+    }
+    return false;
+  };
 
   const handleChange: (event: FormEvent) => void = (event) => {
     const target = event.target as HTMLInputElement | HTMLSelectElement;
     const { name } = target;
     const { value } = target;
     let stateValue: string | number | boolean = value;
+    setErrors((previousErrors) => ({ ...previousErrors, [name]: '' }));
     if (['isMonthly', 'hasAgreedToPrivacyPolicy'].includes(name)) {
       setState((previousState) => ({
         ...previousState,
@@ -51,13 +77,14 @@ export default function DonationForm({
   };
 
   const handleSubmit = (event: FormEvent) => {
-    console.log('submit', event.target);
-    console.log(state);
     addCard({ ...state });
     event.preventDefault();
   };
 
   const renderNextStep: () => void = () => {
+    if (!validate()) {
+      return;
+    }
     let { step } = state;
     if (step < LAST_STEP) {
       step += 1;
@@ -130,6 +157,7 @@ export default function DonationForm({
           isMonthly={state.isMonthly}
           donationAmount={state.donationAmount}
           customDonationAmount={state.customDonationAmount}
+          errors={errors}
           handleChange={handleChange}
         />
         <StepCreditCard

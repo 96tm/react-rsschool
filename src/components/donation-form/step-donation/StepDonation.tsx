@@ -6,6 +6,7 @@ interface IDonationProps {
   donationAmount: number;
   isMonthly: boolean;
   customDonationAmount: number;
+  errors: Record<string, string>;
   handleChange: (event: FormEvent) => void;
 }
 
@@ -14,9 +15,11 @@ export default function StepDonation({
   donationAmount,
   isMonthly,
   customDonationAmount,
+  errors,
   handleChange,
 }: IDonationProps): JSX.Element | null {
   const FORM_STEP = 1;
+
   if (step !== FORM_STEP) {
     return null;
   }
@@ -64,17 +67,20 @@ export default function StepDonation({
           />
           <div className="StepDonation__overlay" />
         </label>
-        <input
-          type="number"
-          name="customDonationAmount"
-          min="5"
-          max="999"
-          value={customDonationAmount}
-          onChange={handleChange}
-          className={`StepDonation__custom-donation-input${
-            donationAmount !== 0 ? ' hidden' : ''
-          }`}
-        />
+        <div className="StepDonation__input-container">
+          <input
+            type="number"
+            name="customDonationAmount"
+            min="5"
+            max="999"
+            value={customDonationAmount}
+            onChange={handleChange}
+            className={`StepDonation__custom-donation-input${
+              donationAmount !== 0 ? ' hidden' : ''
+            }`}
+          />
+          <p className="input-error">{errors.customDonationAmount}</p>
+        </div>
       </div>
       <label
         htmlFor="StepDonation__donation-type"
