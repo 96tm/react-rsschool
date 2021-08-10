@@ -5,6 +5,7 @@ import StepCreditCard from './step-credit-card/StepCreditCard';
 import StepPersonInfo from './step-person/StepPersonInfo';
 import IDonationFormState from '../../models/IDonationFormState';
 import IAddCard from '../../models/IAddCard';
+import { EMAIL_REGEXP } from '../../shared/constants';
 
 const defaultFormValues: IDonationFormState = {
   step: 1,
@@ -32,10 +33,54 @@ export default function DonationForm({
 
   const validateDonationStep = () => {
     const stepErrors: Record<string, string> = {};
-
     if (state.customDonationAmount <= 0) {
       stepErrors.customDonationAmount =
         'Donation amount must be greater than zero';
+    }
+    setErrors({ ...stepErrors });
+    if (Object.keys(stepErrors).length) {
+      return false;
+    }
+    return true;
+  };
+
+  const validatePersonInfoStep = () => {
+    const stepErrors: Record<string, string> = {};
+    if (state.personName.length === 0) {
+      stepErrors.personName = "Name can't be empty";
+    } else if (state.personName.length > 50) {
+      stepErrors.personName = 'Name can be at most 50 letters long';
+    }
+    if (state.personEmail.length === 0) {
+      stepErrors.personEmail = "Email can't be empty";
+    } else if (state.personEmail.length > 50) {
+      stepErrors.personEmail = 'Email can be at most 50 letters long';
+    } else if (!EMAIL_REGEXP.test(state.personEmail)) {
+      stepErrors.personEmail =
+        'E-mail must match the following pattern: local-part@domain. Example: email@email.com';
+    }
+    const birth = new Date(state.personDateOfBirth);
+    const now = new Date();
+    if (now.getFullYear() - birth.getFullYear() >= 18) {
+      const monthNow = now.getMonth();
+      const monthBirth = birth.getMonth();
+      if (
+        monthNow < monthBirth ||
+        (monthNow === monthBirth && now.getDate() < birth.getDate())
+      ) {
+        stepErrors.personDateOfBirth =
+          'You have to be at least 18 years old to donate';
+      }
+    } else {
+      stepErrors.personDateOfBirth =
+        'You have to be at least 18 years old to donate';
+    }
+    if (!state.personDateOfBirth) {
+      stepErrors.personDateOfBirth = 'Please specify date of birth';
+    }
+    if (!state.hasAgreedToPrivacyPolicy) {
+      stepErrors.hasAgreedToPrivacyPolicy =
+        'You have to agree to the privacy policy to continue';
     }
     setErrors({ ...stepErrors });
     if (Object.keys(stepErrors).length) {
@@ -48,6 +93,8 @@ export default function DonationForm({
     switch (state.step) {
       case 1:
         return validateDonationStep();
+      case 2:
+        return validatePersonInfoStep();
       default:
         break;
     }
@@ -124,7 +171,7 @@ export default function DonationForm({
       return (
         <button
           type="button"
-          className="DonationForm__button-back DonationForm__button"
+          className="DonationForm__button-back"
           onClick={renderPreviousStep}
         >
           Back
@@ -160,20 +207,21 @@ export default function DonationForm({
           errors={errors}
           handleChange={handleChange}
         />
-        <StepCreditCard
-          step={state.step}
-          creditCardNumber={state.creditCardNumber}
-          creditCardCVV={state.creditCardCVV}
-          creditCardMonth={state.creditCardMonth}
-          creditCardYear={state.creditCardYear}
-          handleChange={handleChange}
-        />
         <StepPersonInfo
           step={state.step}
           personName={state.personName}
           personEmail={state.personEmail}
           personDateOfBirth={state.personDateOfBirth}
           hasAgreedToPrivacyPolicy={state.hasAgreedToPrivacyPolicy}
+          errors={errors}
+          handleChange={handleChange}
+        />
+        <StepCreditCard
+          step={state.step}
+          creditCardNumber={state.creditCardNumber}
+          creditCardCVV={state.creditCardCVV}
+          creditCardMonth={state.creditCardMonth}
+          creditCardYear={state.creditCardYear}
           handleChange={handleChange}
         />
         <div className="DonationForm__buttons-container">

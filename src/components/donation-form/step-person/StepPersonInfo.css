@@ -1,12 +1,37 @@
 .StepPersonInfo {
   display: flex;
   flex-direction: column;
-  row-gap: 50px;
 }
 .StepPersonInfo__label {
   display: block;
 }
+.StepPersonInfo__field-container {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 50px;
+}
+.StepPersonInfo__input-container {
+  position: relative;
+}
+.birth-field-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
 
+.birth-input-container {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+}
+.input-error {
+  transform: translateY(50%);
+}
+.input-error-birth {
+  position: initial;
+  align-self: center;
+  margin-left: 20px;
+}
 .StepPersonInfo__input {
   display: block;
   width: 100%;
@@ -16,26 +41,34 @@
   border-radius: 5px;
 }
 .StepPersonInfo__date-of-birth-label {
-  width: 30%;
   cursor: pointer;
 }
-
+.StepPersonInfo__date-of-birth {
+  margin: 0;
+}
 .StepPersonInfo__privacy-policy-label {
-  position: relative;
+  position: absolute;
   display: flex;
   align-items: center;
-  transform: translateY(-100%);
+  padding-left: 50px;
   cursor: pointer;
 }
 .StepPersonInfo__privacy-policy {
   display: inline-block;
   width: 30px;
   height: 30px;
-  margin-right: 20px;
   visibility: hidden;
 }
+.privacy-policy-input-container {
+  display: flex;
+  align-items: center;
+}
+/* .email-field-error-container {
+  margin-bottom: 30px;
+} */
 .StepPersonInfo__privacy-policy-checkmark {
   position: absolute;
+  left: 0;
   width: 30px;
   height: 30px;
   border: 1px solid var(--turquoise);
