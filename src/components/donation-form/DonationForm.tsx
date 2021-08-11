@@ -5,7 +5,7 @@ import StepCreditCard from './step-credit-card/StepCreditCard';
 import StepPersonInfo from './step-person/StepPersonInfo';
 import IDonationFormState from '../../models/IDonationFormState';
 import IAddCard from '../../models/IAddCard';
-import { EMAIL_REGEXP } from '../../shared/constants';
+import ValidationService from '../../shared/validation-service';
 
 const defaultFormValues: IDonationFormState = {
   step: 1,
@@ -23,6 +23,8 @@ const defaultFormValues: IDonationFormState = {
   customDonationAmount: 40,
   hasAgreedToPrivacyPolicy: false,
 };
+
+const validationService = new ValidationService();
 
 export default function DonationForm({
   addCard,
@@ -52,117 +54,26 @@ export default function DonationForm({
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
 
-  const validateDonationStep = () => {
-    const stepErrors: Record<string, string> = {};
-    if (state.customDonationAmount <= 0) {
-      stepErrors.customDonationAmount =
-        'Donation amount must be greater than zero';
-    }
-    setErrors({ ...stepErrors });
-    if (Object.keys(stepErrors).length) {
-      return false;
-    }
-    return true;
-  };
-
-  const validatePersonInfoStep = () => {
-    const ADULT_AGE = 18;
-    const stepErrors: Record<string, string> = {};
-    if (state.personName.length === 0) {
-      stepErrors.personName = "Name can't be empty";
-    } else if (state.personName.length > 50) {
-      stepErrors.personName = 'Name can be at most 50 letters long';
-    }
-    if (state.personEmail.length === 0) {
-      stepErrors.personEmail = "Email can't be empty";
-    } else if (state.personEmail.length > 50) {
-      stepErrors.personEmail = 'Email can be at most 50 letters long';
-    } else if (!EMAIL_REGEXP.test(state.personEmail)) {
-      stepErrors.personEmail =
-        'E-mail must match the following pattern: local-part@domain. Example: email@email.com';
-    }
-    const birth = new Date(state.personDateOfBirth);
-    const now = new Date();
-    if (now.getFullYear() - birth.getFullYear() >= ADULT_AGE) {
-      const monthNow = now.getMonth();
-      const monthBirth = birth.getMonth();
-      if (
-        now.getFullYear() - birth.getFullYear() === ADULT_AGE &&
-        (monthNow < monthBirth ||
-          (monthNow === monthBirth && now.getDate() < birth.getDate()))
-      ) {
-        stepErrors.personDateOfBirth =
-          'You have to be at least 18 years old to donate';
-      }
-    } else {
-      stepErrors.personDateOfBirth =
-        'You have to be at least 18 years old to donate';
-    }
-    if (!state.personDateOfBirth) {
-      stepErrors.personDateOfBirth = 'Please specify date of birth';
-    }
-    if (!state.hasAgreedToPrivacyPolicy) {
-      stepErrors.hasAgreedToPrivacyPolicy =
-        'You have to agree to the privacy policy to continue';
-    }
-    setErrors({ ...stepErrors });
-    if (Object.keys(stepErrors).length) {
-      return false;
-    }
-    return true;
-  };
-
-  const validateCreditCardStep = () => {
-    const CARD_NUMBER_LENGTH = 16;
-    const CVV_LENGTH = 3;
-    const stepErrors: Record<string, string> = {};
-    if (!state.creditCardNumber) {
-      stepErrors.creditCardNumber = 'This field is required';
-    } else if (!/^\d*$/.test(state.creditCardNumber)) {
-      stepErrors.creditCardNumber = `Credit card number must contain only digits`;
-    } else if (state.creditCardNumber.length !== CARD_NUMBER_LENGTH) {
-      stepErrors.creditCardNumber = `Credit card number must be ${CARD_NUMBER_LENGTH} digits long`;
-    }
-    if (!state.creditCardCVV) {
-      stepErrors.creditCardCVV = 'This field is required';
-    } else if (!/^\d*$/.test(state.creditCardCVV)) {
-      stepErrors.creditCardCVV = `CVV must contain only digits`;
-    } else if (state.creditCardCVV.length !== CVV_LENGTH) {
-      stepErrors.creditCardCVV = `CVV must be ${CVV_LENGTH} digits long`;
-    } else if (!parseInt(state.creditCardCVV, 10)) {
-      stepErrors.creditCardCVV = 'Invalid CVV';
-    }
-    const month = parseInt(state.creditCardMonth, 10);
-    if (!month) {
-      stepErrors.creditCardMonth = 'This field is required';
-    } else if (month < 1 || month > NUMBER_OF_MONTHS) {
-      stepErrors.creditCardMonth = 'Invalid month';
-    }
-    const now = new Date();
-    const year = parseInt(state.creditCardYear, 10);
-    if (!year) {
-      stepErrors.creditCardYear = 'This field is required';
-    } else if (year < now.getFullYear()) {
-      stepErrors.creditCardYear = 'Invalid year';
-    } else if (year === now.getFullYear() && month < now.getMonth()) {
-      stepErrors.creditCardMonth = 'Invalid month';
-    }
-
-    setErrors({ ...stepErrors });
-    if (Object.keys(stepErrors).length) {
-      return false;
-    }
-    return true;
-  };
-
   const validate = () => {
     switch (state.step) {
-      case 1:
-        return validateDonationStep();
-      case 2:
-        return validatePersonInfoStep();
-      case 3:
-        return validateCreditCardStep();
+      case 1: {
+        const { hasErrors, stepErrors } =
+          validationService.validateDonationStep(state.customDonationAmount);
+        setErrors(stepErrors);
+        return !hasErrors;
+      }
+      case 2: {
+        const { hasErrors, stepErrors } =
+          validationService.validatePersonInfoStep({ ...state });
+        setErrors(stepErrors);
+        return !hasErrors;
+      }
+      case 3: {
+        const { hasErrors, stepErrors } =
+          validationService.validateCreditCardStep({ ...state });
+        setErrors(stepErrors);
+        return !hasErrors;
+      }
       default:
         break;
     }
