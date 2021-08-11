@@ -1,5 +1,5 @@
 export default interface IDonationFormState {
-  [key: string]: string | number | undefined | boolean;
+  [key: string]: string | number | undefined | boolean | string[];
   step: number;
   personName: string;
   personEmail: string;
@@ -8,6 +8,8 @@ export default interface IDonationFormState {
   creditCardCVV: string;
   creditCardMonth: string;
   creditCardYear: string;
+  months: string[];
+  years: string[];
   isMonthly: boolean;
   donationAmount: number;
   customDonationAmount: number;

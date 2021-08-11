@@ -16,6 +16,8 @@ const defaultFormValues: IDonationFormState = {
   creditCardCVV: '',
   creditCardMonth: '',
   creditCardYear: '',
+  months: [],
+  years: [],
   isMonthly: false,
   donationAmount: 30,
   customDonationAmount: 40,
@@ -28,7 +30,26 @@ export default function DonationForm({
   addCard: IAddCard;
 }): JSX.Element {
   const LAST_STEP = 3;
-  const [state, setState] = useState<IDonationFormState>(defaultFormValues);
+  const NUMBER_OF_MONTHS = 12;
+  const NUMBER_OF_YEARS = 5;
+
+  const createYearsOptions = () => {
+    const currentYear = new Date().getFullYear();
+    return Array(NUMBER_OF_YEARS)
+      .fill(0)
+      .map((_, index) => String(currentYear + index));
+  };
+
+  const createMonthsOptions = () =>
+    Array(NUMBER_OF_MONTHS)
+      .fill(0)
+      .map((_, index) => String(index < 9 ? `0${index + 1}` : index + 1));
+
+  const [state, setState] = useState<IDonationFormState>({
+    ...defaultFormValues,
+    months: createMonthsOptions(),
+    years: createYearsOptions(),
+  });
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const validateDonationStep = () => {
@@ -89,12 +110,57 @@ export default function DonationForm({
     return true;
   };
 
+  const validateCreditCardStep = () => {
+    const CARD_NUMBER_LENGTH = 16;
+    const CVV_LENGTH = 3;
+    const stepErrors: Record<string, string> = {};
+    if (!state.creditCardNumber) {
+      stepErrors.creditCardNumber = 'This field is required';
+    } else if (!/^\d*$/.test(state.creditCardNumber)) {
+      stepErrors.creditCardNumber = `Credit card number must contain only digits`;
+    } else if (state.creditCardNumber.length !== CARD_NUMBER_LENGTH) {
+      stepErrors.creditCardNumber = `Credit card number must be ${CARD_NUMBER_LENGTH} digits long`;
+    }
+    if (!state.creditCardCVV) {
+      stepErrors.creditCardCVV = 'This field is required';
+    } else if (!/^\d*$/.test(state.creditCardCVV)) {
+      stepErrors.creditCardCVV = `CVV must contain only digits`;
+    } else if (state.creditCardCVV.length !== CVV_LENGTH) {
+      stepErrors.creditCardCVV = `CVV must be ${CVV_LENGTH} digits long`;
+    } else if (!parseInt(state.creditCardCVV, 10)) {
+      stepErrors.creditCardCVV = 'Invalid CVV';
+    }
+    const month = parseInt(state.creditCardMonth, 10);
+    if (!month) {
+      stepErrors.creditCardMonth = 'This field is required';
+    } else if (month < 1 || month > NUMBER_OF_MONTHS) {
+      stepErrors.creditCardMonth = 'Invalid month';
+    }
+    const now = new Date();
+    const year = parseInt(state.creditCardYear, 10);
+    if (!year) {
+      stepErrors.creditCardYear = 'This field is required';
+    } else if (year < now.getFullYear()) {
+      stepErrors.creditCardYear = 'Invalid year';
+    } else if (year === now.getFullYear() && month < now.getMonth()) {
+      stepErrors.creditCardMonth = 'Invalid month';
+    }
+
+    setErrors({ ...stepErrors });
+    if (Object.keys(stepErrors).length) {
+      return false;
+    }
+    return true;
+  };
+
   const validate = () => {
     switch (state.step) {
       case 1:
         return validateDonationStep();
       case 2:
-        return validatePersonInfoStep();
+        return !validatePersonInfoStep();
+      case 3:
+        return validateCreditCardStep();
       default:
         break;
     }
@@ -115,8 +181,9 @@ export default function DonationForm({
       return;
     }
     if (['donationAmount', 'customDonationAmount'].includes(name)) {
-      stateValue = Number(value);
+      stateValue = parseInt(value, 10);
     }
+
     setState((previousState) => ({
       ...previousState,
       [name]: stateValue,
@@ -124,8 +191,11 @@ export default function DonationForm({
   };
 
   const handleSubmit = (event: FormEvent) => {
-    addCard({ ...state });
     event.preventDefault();
+    if (!validate()) {
+      return;
+    }
+    addCard({ ...state });
   };
 
   const renderNextStep: () => void = () => {
@@ -222,6 +292,9 @@ export default function DonationForm({
           creditCardCVV={state.creditCardCVV}
           creditCardMonth={state.creditCardMonth}
           creditCardYear={state.creditCardYear}
+          months={state.months}
+          years={state.years}
+          errors={errors}
           handleChange={handleChange}
         />
         <div className="DonationForm__buttons-container">

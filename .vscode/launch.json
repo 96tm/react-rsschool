@@ -5,12 +5,17 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "type": "pwa-chrome",
-      "runtimeExecutable": "dev",
+      "type": "firefox",
       "request": "launch",
       "name": "Launch Chrome against localhost",
       "url": "http://localhost:4000",
-      "webRoot": "${workspaceFolder}"
+      "webRoot": "${workspaceFolder}",
+      "pathMappings": [
+        {
+          "url": "webpack://react-template/src",
+          "path": "${workspaceFolder}/src"
+        }
+      ]
     }
   ]
 }

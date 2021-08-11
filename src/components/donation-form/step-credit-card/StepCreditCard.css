@@ -21,14 +21,17 @@
   height: 65px;
   border-radius: 5px;
 }
+.StepCreditCard__field-container {
+  align-self: flex-end;
+}
 .StepCreditCard__card-cvv {
   font-weight: 900;
   font-size: 20px;
 }
-.StepCreditCard__card-number-label {
+.card-number-field-container {
   width: 65%;
 }
-.StepCreditCard__card-cvv-label {
+.card-cvv-field-container {
   width: 29%;
   margin-left: auto;
 }
@@ -37,14 +40,18 @@
   align-items: flex-end;
   margin-left: 40px;
 }
-.StepCreditCard__card-month-label,
-.StepCreditCard__card-year-label {
+.card-month-container,
+.card-year-container {
   width: 30%;
+}
+.card-year-container {
+  margin-left: 45px;
 }
 .StepCreditCard__card-month,
 .StepCreditCard__card-year {
   width: 100%;
   background: transparent;
+  appearance: none;
   cursor: pointer;
 }
 .StepCreditCard__card-month {
@@ -54,13 +61,17 @@
   position: relative;
   width: 100%;
 }
-.StepCreditCard__select-container::after {
+.StepCreditCard__field-error-container {
+  position: relative;
+}
+.select-arrow {
   content: '';
   position: absolute;
   right: 0;
   top: 0;
   bottom: 0;
   width: 32px;
+  z-index: -1;
   background: var(--turquoise) no-repeat url('public/assets/icons/tick.svg')
     center;
   border: 1px solid #000;
