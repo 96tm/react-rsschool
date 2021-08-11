@@ -66,6 +66,7 @@ export default function DonationForm({
   };
 
   const validatePersonInfoStep = () => {
+    const ADULT_AGE = 18;
     const stepErrors: Record<string, string> = {};
     if (state.personName.length === 0) {
       stepErrors.personName = "Name can't be empty";
@@ -82,12 +83,13 @@ export default function DonationForm({
     }
     const birth = new Date(state.personDateOfBirth);
     const now = new Date();
-    if (now.getFullYear() - birth.getFullYear() >= 18) {
+    if (now.getFullYear() - birth.getFullYear() >= ADULT_AGE) {
       const monthNow = now.getMonth();
       const monthBirth = birth.getMonth();
       if (
-        monthNow < monthBirth ||
-        (monthNow === monthBirth && now.getDate() < birth.getDate())
+        now.getFullYear() - birth.getFullYear() === ADULT_AGE &&
+        (monthNow < monthBirth ||
+          (monthNow === monthBirth && now.getDate() < birth.getDate()))
       ) {
         stepErrors.personDateOfBirth =
           'You have to be at least 18 years old to donate';
@@ -158,7 +160,7 @@ export default function DonationForm({
       case 1:
         return validateDonationStep();
       case 2:
-        return !validatePersonInfoStep();
+        return validatePersonInfoStep();
       case 3:
         return validateCreditCardStep();
       default:
@@ -183,7 +185,6 @@ export default function DonationForm({
     if (['donationAmount', 'customDonationAmount'].includes(name)) {
       stateValue = parseInt(value, 10);
     }
-
     setState((previousState) => ({
       ...previousState,
       [name]: stateValue,
@@ -195,7 +196,16 @@ export default function DonationForm({
     if (!validate()) {
       return;
     }
-    addCard({ ...state });
+    addCard({
+      ...state,
+      donationAmount: state.donationAmount || state.customDonationAmount,
+    });
+    setState({
+      ...defaultFormValues,
+      step: 1,
+      months: createMonthsOptions(),
+      years: createYearsOptions(),
+    });
   };
 
   const renderNextStep: () => void = () => {
