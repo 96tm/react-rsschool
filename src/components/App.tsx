@@ -1,5 +1,8 @@
 import React from 'react';
 import { hot } from 'react-hot-loader';
+import 'public/assets/css/normalize.css';
+import 'public/assets/css/base.css';
+import './App.css';
 
 function App() {
   return (

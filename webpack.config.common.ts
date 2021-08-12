@@ -10,10 +10,6 @@ const config: webpack.Configuration = {
   module: {
     rules: [
       {
-        test: /\.(png|svg|jpg|jpeg|gif)$/i,
-        type: 'asset/resource',
-      },
-      {
         test: /\.css$/,
         use: [
           {
@@ -52,6 +48,7 @@ const config: webpack.Configuration = {
   plugins: [
     new HtmlWebpackPlugin({
       template: 'src/index.html',
+      favicon: 'public/assets/icons/favicon.svg',
     }),
     new ForkTsCheckerWebpackPlugin({
       async: false,
