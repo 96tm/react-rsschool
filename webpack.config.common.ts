@@ -1,3 +1,4 @@
+import path from 'path';
 import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
@@ -8,6 +9,10 @@ const config: webpack.Configuration = {
   entry: './src/index.tsx',
   module: {
     rules: [
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/i,
+        type: 'asset/resource',
+      },
       {
         test: /\.css$/,
         use: [
@@ -39,6 +44,9 @@ const config: webpack.Configuration = {
     ],
   },
   resolve: {
+    alias: {
+      public: path.resolve(__dirname, 'public'),
+    },
     extensions: ['.tsx', '.ts', '.js'],
   },
   plugins: [
