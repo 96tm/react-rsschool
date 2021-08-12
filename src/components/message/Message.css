@@ -1,0 +1,22 @@
+.Message {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  width: 100%;
+  background: #d1ecf1;
+  background-color: #d1ecf1;
+  border-color: #bee5eb;
+}
+
+.Message__content {
+  position: relative;
+  top: 0;
+  width: 100%;
+  padding: 0.75rem 1.25rem;
+  color: #0c5460;
+  background: #d1ecf1;
+  border: 1px solid #bee5eb;
+  text-align: center;
+  font-size: 2rem;
+  word-break: break-word;
+}
