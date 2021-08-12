@@ -1,0 +1,93 @@
+.StepPersonInfo {
+  display: flex;
+  flex-direction: column;
+}
+.StepPersonInfo__label {
+  display: block;
+}
+.StepPersonInfo__field-container {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 50px;
+}
+.StepPersonInfo__input-container {
+  position: relative;
+}
+.birth-field-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.birth-input-container {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+}
+.input-error {
+  transform: translateY(50%);
+}
+.input-error-birth {
+  position: initial;
+  align-self: center;
+  margin-left: 20px;
+}
+.StepPersonInfo__input {
+  display: block;
+  width: 100%;
+  height: 60px;
+  margin-top: 10px;
+  padding-left: 20px;
+  border-radius: 5px;
+}
+.StepPersonInfo__date-of-birth-label {
+  cursor: pointer;
+}
+.StepPersonInfo__date-of-birth {
+  margin: 0;
+}
+.StepPersonInfo__privacy-policy-label {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  padding-left: 50px;
+  cursor: pointer;
+}
+.StepPersonInfo__privacy-policy {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  visibility: hidden;
+}
+.privacy-policy-input-container {
+  display: flex;
+  align-items: center;
+}
+.StepPersonInfo__privacy-policy-checkmark {
+  position: absolute;
+  left: 0;
+  width: 30px;
+  height: 30px;
+  border: 1px solid var(--turquoise);
+}
+.StepPersonInfo__privacy-policy-checkmark::after {
+  content: '';
+  position: absolute;
+  display: none;
+}
+.StepPersonInfo__privacy-policy:checked
+  ~ .StepPersonInfo__privacy-policy-checkmark {
+  background: var(--turquoise);
+}
+.StepPersonInfo__privacy-policy:checked
+  ~ .StepPersonInfo__privacy-policy-checkmark::after {
+  content: '';
+  position: absolute;
+  display: block;
+  left: 50%;
+  top: 50%;
+  width: 15px;
+  height: 20px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: translate(-50%, -65%) rotate(45deg);
+}

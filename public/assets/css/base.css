@@ -1,0 +1,26 @@
+:root {
+  --bg-orange: #f58021;
+  --font-main: 'Montserrat';
+  --turquoise: rgb(0, 160, 146);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+html {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.blue {
+  color: #00a092;
+}
+.hidden {
+  visibility: hidden;
+}
+.input-error {
+  position: absolute;
+  margin: 0;
+  color: rgba(255, 0, 0, 0.7);
+}
