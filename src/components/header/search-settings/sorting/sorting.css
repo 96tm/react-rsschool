@@ -1,0 +1,33 @@
+.sorting {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 150px;
+  padding-bottom: 10px;
+}
+.title {
+  color: var(--text-gray);
+}
+.sort-option {
+  position: relative;
+  padding-left: 10px;
+  background: transparent;
+  border: none;
+  color: var(--bg-blue);
+  cursor: pointer;
+}
+.sort-option.active {
+  text-decoration: underline;
+}
+.sort-option.active.asc::after,
+.sort-option.active.desc::after {
+  position: absolute;
+  font-size: 8px;
+  transform: translate(20%, 40%);
+}
+.sort-option.active.asc::after {
+  content: '▲';
+}
+.sort-option.active.desc::after {
+  content: '▼';
+}

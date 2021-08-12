@@ -1,5 +1,31 @@
+:root {
+  --bg-blue: rgba(47, 128, 237, 1);
+  --bg-green: rgba(39, 174, 96, 1);
+  --bg-red: rgba(235, 87, 87, 1);
+  --bg-gray: #e5e5e5;
+  --bg-input: #efefef;
+  --text-gray: rgba(146, 146, 146, 1);
+  --text-dark: rgba(79, 79, 79, 1);
+  --guidelines: 540px;
+  --guidelines-search-results: 1140px;
+  --filter-highlight: drop-shadow(2px 0px 4px #2f80ed);
+}
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+html {
+  font-family: 'Roboto', sans-serif;
+}
+
+.button {
+  border: none;
+  cursor: pointer;
+}
+
+.button:hover {
+  filter: var(--filter-highlight);
 }

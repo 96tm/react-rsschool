@@ -1,0 +1,15 @@
+.Header {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-top: 15px;
+  background: var(--bg-gray);
+}
+
+.header-container {
+  position: relative;
+  left: 50%;
+  width: 60%;
+  max-width: var(--guidelines);
+  transform: translateX(-50%);
+}

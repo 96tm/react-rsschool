@@ -1,0 +1,30 @@
+.Pagination {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+
+.number-of-items,
+.current-page-input {
+  width: 10%;
+}
+
+.label {
+  color: var(--text-gray);
+  margin-right: 5px;
+}
+
+.input-container {
+  display: flex;
+  align-items: center;
+  width: 150px;
+  justify-content: space-between;
+}
+
+.pages {
+  display: flex;
+}
+
+.input {
+  width: 60px;
+}

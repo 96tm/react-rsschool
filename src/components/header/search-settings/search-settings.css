@@ -1,0 +1,10 @@
+.SearchSettings {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  padding-bottom: 18px;
+  width: 100%;
+  max-width: var(--guidelines);
+  font-size: 12px;
+  line-height: 14px;
+}

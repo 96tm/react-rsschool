@@ -1,0 +1,8 @@
+.PageLink {
+  margin-right: 5px;
+  color: var(--bg-blue);
+  cursor: pointer;
+}
+.PageLink:hover {
+  filter: var(--filter-highlight);
+}

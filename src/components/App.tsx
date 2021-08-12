@@ -3,11 +3,12 @@ import { hot } from 'react-hot-loader';
 import 'public/assets/css/normalize.css';
 import 'public/assets/css/base.css';
 import './App.css';
+import Header from './header/header';
 
 function App() {
   return (
     <div className="App">
-      <h1> Hello, World! </h1>
+      <Header />
     </div>
   );
 }
