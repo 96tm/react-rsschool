@@ -32,3 +32,10 @@
   font: normal 700 20px/23px 'Roboto';
   color: var(--text-dark);
 }
+.link {
+  text-decoration: none;
+  color: var(--bg-blue);
+}
+.logo {
+  font-weight: 700;
+}

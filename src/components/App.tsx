@@ -34,24 +34,22 @@ function App() {
       .getItems(text)
       .then((response) => response.json())
       .then((json) => {
-        console.log('json', json);
-
         setState((previousState) => ({
           ...previousState,
           pageNumber: json.photos.pages,
           limit: previousState.limit,
           total: 0,
-          photos: json.photos.photo.map((item: IPhoto) => {
-            console.log('item', item);
-
-            return new Photo({
-              ...item,
-              src: apiService.generatePhotoLink(item),
-            });
-          }),
+          photos: json.photos.photo.map(
+            (item: IPhoto) =>
+              new Photo({
+                ...item,
+                src: apiService.generateImageLink(item),
+                link: apiService.generatePhotoLink(item),
+              })
+          ),
         }));
       })
-      .catch((err) => console.log('err', err));
+      .catch((err) => console.error('err', err));
 
   return (
     <div className="App">

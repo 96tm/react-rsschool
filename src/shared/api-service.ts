@@ -15,7 +15,11 @@ export default class ApiService {
     return response;
   }
 
-  generatePhotoLink({ id, server, secret }: IPhoto, size = 'w'): string {
+  generateImageLink({ id, server, secret }: IPhoto, size = 'w'): string {
     return `https://live.staticflickr.com/${server}/${id}_${secret}_${size}.jpg`;
+  }
+
+  generatePhotoLink({ owner, id }: IPhoto): string {
+    return `https://www.flickr.com/photos/${owner}/${id}`;
   }
 }

@@ -4,9 +4,10 @@ import './card.css';
 interface ICardProps {
   src: string;
   title: string;
+  link: string;
 }
 
-export default function Card({ src, title }: ICardProps): JSX.Element {
+export default function Card({ src, title, link }: ICardProps): JSX.Element {
   return (
     <div className="card">
       <div className="container">
@@ -16,6 +17,9 @@ export default function Card({ src, title }: ICardProps): JSX.Element {
         <p className="title" title={title}>
           {title}
         </p>
+        <a href={link} className="link">
+          View on <span className="logo">Flickr</span>
+        </a>
       </div>
     </div>
   );
