@@ -1,11 +1,9 @@
 .sorting {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  width: 150px;
   padding-bottom: 10px;
 }
-.title {
+.sort-title {
   color: var(--text-gray);
 }
 .sort-option {
@@ -30,4 +28,7 @@
 }
 .sort-option.active.desc::after {
   content: '▼';
+}
+.buttons {
+  display: flex;
 }
