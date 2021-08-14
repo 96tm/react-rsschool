@@ -20,6 +20,8 @@ export default class ApiService {
     sortType = SortType.datePosted,
     sortOrder = SortOrder.desc,
   }: IApiRequestParams): Promise<Response> {
+    console.log('limit', limit);
+
     const queryString = `api_key=${this.key}&sort=${sortType}-${sortOrder}&page=${pageNumber}&per_page=${limit}&text=${text}`;
     const response = fetch(`${this.url}${queryString}`);
     return response;
