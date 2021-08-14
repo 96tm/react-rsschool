@@ -1,10 +1,5 @@
 import SortType from './models/sort-type';
-
-interface IPhoto {
-  id: number;
-  serverId: number;
-  secret: string;
-}
+import { IPhoto } from './models/photo';
 
 export default class ApiService {
   constructor(private url: string, private key: string) {}
@@ -20,7 +15,7 @@ export default class ApiService {
     return response;
   }
 
-  getPhotoLink({ id, serverId, secret }: IPhoto, size = 'w'): string {
-    return `ttps://live.staticflickr.com/${serverId}/${id}_${secret}_${size}`;
+  generatePhotoLink({ id, server, secret }: IPhoto, size = 'w'): string {
+    return `https://live.staticflickr.com/${server}/${id}_${secret}_${size}.jpg`;
   }
 }

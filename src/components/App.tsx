@@ -7,7 +7,8 @@ import Header from './header/header';
 import { API_URL, API_KEY } from '../shared/constants';
 import ApiService from '../shared/api-service';
 import AppContext from '../shared/app-context';
-import IPhoto from '../shared/models/photo';
+import { IPhoto, Photo } from '../shared/models/photo';
+import SearchResults from './search-results/search-results';
 
 interface IAppState {
   pageNumber: number;
@@ -37,10 +38,17 @@ function App() {
 
         setState((previousState) => ({
           ...previousState,
-          pageNumber: previousState.pageNumber,
+          pageNumber: json.photos.pages,
           limit: previousState.limit,
           total: 0,
-          photos: [],
+          photos: json.photos.photo.map((item: IPhoto) => {
+            console.log('item', item);
+
+            return new Photo({
+              ...item,
+              src: apiService.generatePhotoLink(item),
+            });
+          }),
         }));
       })
       .catch((err) => console.log('err', err));
@@ -50,11 +58,11 @@ function App() {
       <AppContext.Provider
         value={{
           total: state.total,
-          photos: state.photos,
           handleSearchClick,
         }}
       >
         <Header />
+        <SearchResults photos={state.photos} />
       </AppContext.Provider>
     </div>
   );

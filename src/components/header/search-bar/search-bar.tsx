@@ -1,6 +1,6 @@
 import React, { useContext, MouseEvent, ChangeEvent } from 'react';
 import './search-bar.css';
-import logo from 'public/assets/icons/logo.svg';
+import logo from 'public/assets/icons/logo.png';
 import AppContext from '../../../shared/app-context';
 
 interface ISearchBarProps {
