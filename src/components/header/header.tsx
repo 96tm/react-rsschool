@@ -26,7 +26,7 @@ export default function Header(): JSX.Element {
     }));
 
   return (
-    <header className="Header">
+    <header className="header">
       <div className="header-container">
         <SearchBar
           searchBarInput={state.searchBarInput}

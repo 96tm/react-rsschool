@@ -52,7 +52,8 @@ const config: webpack.Configuration = {
   plugins: [
     new HtmlWebpackPlugin({
       template: 'src/index.html',
-      favicon: 'public/assets/icons/favicon.svg',
+      favicon: 'public/assets/icons/logo.png',
+      title: 'React API',
     }),
     new ForkTsCheckerWebpackPlugin({
       async: false,

@@ -1,8 +1,15 @@
-.PageLink {
+.page-link {
   margin-right: 5px;
   color: var(--bg-blue);
+  text-decoration: none;
   cursor: pointer;
 }
-.PageLink:hover {
+.page-link.active {
+  text-decoration: underline;
+}
+.page-link:hover {
   filter: var(--filter-highlight);
+}
+.ellipsis {
+  margin-right: 5px;
 }

@@ -1,20 +1,56 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import './pages-list.css';
 import PageLink from './page-link/page-link';
+import AppContext from '../../../../../shared/app-context';
 
-interface IPagesListProps {
-  numberOfPages: number;
-  currentPage: number;
-}
+export default function PagesList(): JSX.Element {
+  const { currentPage, numberOfPages } = useContext(AppContext);
+  const STRIDE = 5;
+  const generatePageLinks = (current: number, total: number) => {
+    const pages: (number | null)[] = [1];
+    let lengthLeft;
+    if (current <= STRIDE) {
+      lengthLeft = current;
+      pages.push(
+        ...Array(lengthLeft - 1)
+          .fill(0)
+          .map((_, index) => index + 2)
+      );
+    } else {
+      pages.push(...[null, current - 1, current]);
+      lengthLeft = 2;
+    }
 
-export default function PagesList({
-  numberOfPages,
-  currentPage,
-}: IPagesListProps): JSX.Element {
+    const lengthRight = Math.max(1, STRIDE - lengthLeft);
+    pages.push(
+      ...Array(Math.min(lengthRight, total - current))
+        .fill(0)
+        .map((_, index) => index + current + 1)
+    );
+
+    const last = pages[pages.length - 1];
+    if (last && total - last > 1) {
+      pages.push(null, total);
+    } else if (last && total - last === 1) {
+      pages.push(total);
+    }
+    return pages;
+  };
   return (
-    <ul className="PagesList">
-      <PageLink pageNumber={currentPage} />
-      <PageLink pageNumber={numberOfPages} />
+    <ul className="pages-list">
+      {generatePageLinks(currentPage, numberOfPages).map((item, index) => {
+        let element: JSX.Element;
+        if (item) {
+          element = <PageLink pageNumber={item} text={String(item)} />;
+        } else {
+          element = <span className="ellipsis">{' ... '}</span>;
+        }
+        return (
+          <li className="page-link" key={`page-link-item-${String(index)}`}>
+            {element}
+          </li>
+        );
+      })}
     </ul>
   );
 }

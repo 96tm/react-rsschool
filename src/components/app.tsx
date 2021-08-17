@@ -1,14 +1,8 @@
-import React, {
-  useState,
-  useRef,
-  useEffect,
-  useCallback,
-  ChangeEvent,
-} from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { hot } from 'react-hot-loader';
 import 'public/assets/css/normalize.css';
 import 'public/assets/css/base.css';
-import './App.css';
+import './app.css';
 import Header from './header/header';
 import { API_URL, API_KEY } from '../shared/constants';
 import ApiService from '../shared/api-service';
@@ -17,48 +11,63 @@ import { IPhoto, Photo } from '../shared/models/photo';
 import SearchResults from './search-results/search-results';
 import SortType from '../shared/models/sort-type';
 import SortOrder from '../shared/models/sort-order';
+import Loader from './loader/loader';
+import ErrorMessage from './error-message/error-message';
+import NotFound from './not-found/not-found';
 
 interface IAppState {
+  isLoading: boolean;
+  limit: number;
   pageNumber: number;
   numberOfPages: number;
   photos: IPhoto[];
   searchInput: string;
+  noResults: boolean;
 }
 
 const apiService = new ApiService(API_URL, API_KEY);
 
 function App() {
   const isFirstRender = useRef(true);
-  const PAGE_NUMBER = 1;
   const LIMIT = 20;
-  const [pageNumber, setPageNumber] = useState(0);
-  const [limit, setLimit] = useState(LIMIT);
+  const JSON_STATUS_OK = 'ok';
+  const [error, setError] = useState<string>('');
   const [sortingState, setSortingState] = useState<{
     sortType: SortType;
     sortOrder: SortOrder;
   }>({ sortType: SortType.datePosted, sortOrder: SortOrder.desc });
   const [state, setState] = useState<IAppState>({
-    pageNumber: PAGE_NUMBER,
-    numberOfPages: 0,
+    isLoading: false,
+    limit: LIMIT,
+    pageNumber: 1,
+    numberOfPages: 1,
     photos: [],
     searchInput: '',
+    noResults: false,
   });
 
   const getSearchItems = useCallback(() => {
+    if (!state.searchInput) {
+      return;
+    }
+    setState((previousState) => ({ ...previousState, isLoading: true }));
     apiService
       .getItems({
         ...state,
         text: state.searchInput,
-        pageNumber,
-        limit,
         sortType: sortingState.sortType,
         sortOrder: sortingState.sortOrder,
       })
       .then((response) => response.json())
       .then((json) => {
+        if (!(json.stat === JSON_STATUS_OK)) {
+          throw Error(json.message);
+        }
         setState((previousState) => ({
           ...previousState,
-          numberOfPages: json.photos.pages,
+          noResults: !json.photos.photo.length,
+          currentPage: Math.min(previousState.pageNumber, json.photos.pages),
+          numberOfPages: Math.max(1, json.photos.pages),
           photos: json.photos.photo.map(
             (item: IPhoto) =>
               new Photo({
@@ -68,9 +77,15 @@ function App() {
               })
           ),
         }));
+        setError('');
       })
-      .catch((err) => console.error('err', err));
-  }, [limit, pageNumber, sortingState]);
+      .catch((err: Error) => {
+        setError(err.message);
+      })
+      .finally(() => {
+        setState((previousState) => ({ ...previousState, isLoading: false }));
+      });
+  }, [state.limit, state.pageNumber, state.searchInput, sortingState]);
 
   useEffect(() => {
     if (isFirstRender.current) {
@@ -81,19 +96,26 @@ function App() {
   }, [getSearchItems]);
 
   const handleLimitChange: IHandleLimitChange = (event) => {
-    setLimit(parseInt(event.target.value, 10));
+    setState((previousState) => ({
+      ...previousState,
+      limit: parseInt(event.target.value, 10),
+    }));
   };
 
-  const handlePageNumberChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setPageNumber(parseInt(event.target.value, 10));
+  const handlePageNumberChange = (page: number) => {
+    if (page > state.numberOfPages) {
+      return;
+    }
+    setState((previousState) => ({ ...previousState, pageNumber: page }));
   };
 
   const handleSortClick = (sortType: SortType) => {
     if (sortType !== sortingState.sortType) {
-      setSortingState({
+      setSortingState((previousState) => ({
+        ...previousState,
         sortType,
         sortOrder: SortOrder.asc,
-      });
+      }));
     } else {
       setSortingState((previousState) => ({
         ...previousState,
@@ -105,29 +127,44 @@ function App() {
     }
   };
 
-  const handleSearchClick = async (text: string) => {
-    setState((previousState) => ({ ...previousState, searchInput: text }));
-    getSearchItems();
+  const handleSearch = async (text: string) => {
+    setState((previousState) => ({
+      ...previousState,
+      searchInput: text.trim(),
+    }));
+  };
+
+  const handleErrorCloseClick = () => {
+    setError('');
   };
 
   return (
-    <div className="App">
+    <div className="app">
+      {error && (
+        <ErrorMessage
+          message={error}
+          handleCloseClick={handleErrorCloseClick}
+        />
+      )}
+      {state.isLoading && <Loader />}
       <AppContext.Provider
         value={{
+          currentPage: Math.min(state.pageNumber, state.numberOfPages),
           numberOfPages: state.numberOfPages,
+          isLoading: state.isLoading,
           sortType: sortingState.sortType,
           sortOrder: sortingState.sortOrder,
-          handleSearchClick,
+          handleSearch,
           handleSortClick,
           handleLimitChange,
           handlePageNumberChange,
         }}
       >
         <Header />
-        <SearchResults photos={state.photos} />
+        {!state.noResults && <SearchResults photos={state.photos} />}
+        {state.noResults && <NotFound />}
       </AppContext.Provider>
     </div>
   );
 }
-
 export default hot(module)(App);

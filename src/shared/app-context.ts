@@ -2,7 +2,7 @@ import React, { MouseEvent, ChangeEvent } from 'react';
 import SortType from './models/sort-type';
 import SortOrder from './models/sort-order';
 
-export interface IHandleSearchClick {
+export interface IHandleSearch {
   (text: string, event: MouseEvent<HTMLButtonElement>): void;
 }
 
@@ -15,21 +15,25 @@ export interface IHandleLimitChange {
 }
 
 export interface IHandlePageNumberChange {
-  (event: ChangeEvent<HTMLInputElement>): void;
+  (page: number): void;
 }
 
 interface IAppContext {
+  currentPage: number;
   numberOfPages: number;
   sortType?: SortType;
   sortOrder?: SortOrder;
-  handleSearchClick?: IHandleSearchClick;
+  isLoading: boolean;
+  handleSearch?: IHandleSearch;
   handleSortClick?: IHandleSortClick;
   handleLimitChange?: IHandleLimitChange;
   handlePageNumberChange?: IHandlePageNumberChange;
 }
 
 const AppContext = React.createContext<IAppContext>({
+  currentPage: 0,
   numberOfPages: 0,
+  isLoading: false,
 });
 
 export default AppContext;

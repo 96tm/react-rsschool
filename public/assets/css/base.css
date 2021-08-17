@@ -6,15 +6,28 @@
   --bg-input: #efefef;
   --text-gray: rgba(146, 146, 146, 1);
   --text-dark: rgba(79, 79, 79, 1);
+  --loader-border: #f3f3f3;
   --guidelines: 540px;
   --guidelines-search-results: 1140px;
   --filter-highlight: drop-shadow(2px 0px 4px #2f80ed);
+  --max-z-index: 999;
+  --main-font: 'Roboto', sans-serif;
+  --error-color: #721c24;
+  --error-background-color: #f8d7da;
+  --error-border-color: #f5c6cb;
 }
 
 *,
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+html,
+body,
+#root,
+.app {
+  height: 100%;
 }
 
 html {
@@ -25,7 +38,9 @@ html {
   border: none;
   cursor: pointer;
 }
-
 .button:hover {
   filter: var(--filter-highlight);
+}
+.disabled {
+  pointer-events: none;
 }

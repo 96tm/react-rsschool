@@ -1,4 +1,4 @@
-.Pagination {
+.pagination {
   display: flex;
   flex-direction: column;
   row-gap: 10px;
@@ -17,8 +17,9 @@
 .input-container {
   display: flex;
   align-items: center;
-  width: 150px;
   justify-content: space-between;
+  flex-flow: row wrap;
+  width: 150px;
 }
 
 .pages {
