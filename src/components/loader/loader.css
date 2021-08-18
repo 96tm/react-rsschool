@@ -6,12 +6,12 @@
   justify-content: center;
   left: 0;
   right: 0;
-  bottom: 0;
 }
 
 .loader-content {
-  position: fixed;
+  position: absolute;
   top: 50%;
+  transform: translateY(-50%);
   width: 120px;
   height: 120px;
 }
