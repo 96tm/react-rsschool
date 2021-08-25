@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+  justify-content: center;
+}
+.search-results {
+  display: flex;
+  justify-content: space-around;
+  flex-flow: row wrap;
+  gap: 28px 28px;
+  width: 100%;
+  max-width: var(--guidelines-search-results);
+  padding: 30px 0 0;
+  margin: 0;
+  list-style: none;
+}
+.statistics {
+  display: flex;
+}
