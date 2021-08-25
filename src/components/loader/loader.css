@@ -1,0 +1,45 @@
+.loader-container {
+  position: absolute;
+  display: flex;
+  z-index: var(--max-z-index);
+  height: 100%;
+  justify-content: center;
+  left: 0;
+  right: 0;
+}
+
+.loader-content {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 120px;
+  height: 120px;
+}
+
+.loader {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 16px solid var(--loader-border);
+  border-top: 16px solid var(--bg-blue);
+  border-radius: 50%;
+  animation: spin 2s cubic-bezier(0.68, -0.55, 0.265, 1.55) infinite;
+  z-index: 1;
+}
+
+.loader-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: var(--text-gray);
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

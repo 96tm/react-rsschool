@@ -1,0 +1,17 @@
+.search-header {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 15px;
+  background: var(--bg-gray);
+}
+.search-header-container {
+  display: flex;
+  position: relative;
+  left: 50%;
+  flex-direction: column;
+  row-gap: 10px;
+  width: 60%;
+  max-width: var(--guidelines);
+  transform: translateX(-50%);
+}
