@@ -1,40 +1,33 @@
-import React, { ChangeEvent, useState } from 'react';
+import React from 'react';
+import { NavLink, useLocation } from 'react-router-dom';
 import './header.css';
-import SearchBar from './search-bar/search-bar';
-import SearchSettings from './search-settings/search-settings';
-
-interface IHeaderState {
-  searchBarInput: string;
-  settingsShown: boolean;
-}
 
 export default function Header(): JSX.Element {
-  const [state, setState] = useState<IHeaderState>({
-    searchBarInput: '',
-    settingsShown: false,
-  });
-
-  const handleSearchBarChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { value } = event.target;
-    setState((previousState) => ({ ...previousState, searchBarInput: value }));
-  };
-
-  const handleSettingsClick = () =>
-    setState((previousState) => ({
-      ...previousState,
-      settingsShown: !previousState.settingsShown,
-    }));
-
+  const location = useLocation();
   return (
     <header className="header">
-      <div className="header-container">
-        <SearchBar
-          searchBarInput={state.searchBarInput}
-          handleSearchBarChange={handleSearchBarChange}
-          handleSettingsClick={handleSettingsClick}
-        />
-        {state.settingsShown && <SearchSettings />}
-      </div>
+      <nav className="nav">
+        <ul className="nav-list">
+          <li className="nav-item">
+            <NavLink
+              className="nav-link"
+              to="/"
+              exact
+              isActive={() =>
+                location.pathname === '/' ||
+                location.pathname.startsWith('/detail')
+              }
+            >
+              Home
+            </NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/about">
+              About
+            </NavLink>
+          </li>
+        </ul>
+      </nav>
     </header>
   );
 }

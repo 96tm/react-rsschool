@@ -17,6 +17,7 @@ export default function SearchResults({
           src={photo.src}
           title={photo.title}
           link={photo.link}
+          photoId={photo.id}
           key={`card-${String(index)}`}
         />
       ))}

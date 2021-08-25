@@ -3,7 +3,6 @@
   display: flex;
   flex-wrap: wrap;
   row-gap: 10px;
-  padding-bottom: 10px;
   font-size: 12px;
   line-height: 14px;
 }

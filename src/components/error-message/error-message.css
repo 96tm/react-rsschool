@@ -1,3 +1,9 @@
+.error-container {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 2;
+}
 .error {
   position: relative;
   z-index: var(--max-z-index);
@@ -10,11 +16,6 @@
   font-size: 2rem;
   text-align: center;
   word-break: break-word;
-}
-.error-container {
-  position: absolute;
-  width: 100%;
-  z-index: 2;
 }
 .button-close {
   position: absolute;

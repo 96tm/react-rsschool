@@ -11,7 +11,7 @@ export default function Pagination(): JSX.Element {
     .handleLimitChange as IHandleLimitChange;
   const handlePageNumberChange = useContext(AppContext)
     .handlePageNumberChange as IHandlePageNumberChange;
-  const { currentPage, numberOfPages } = useContext(AppContext);
+  const { currentPage, numberOfPages, limit } = useContext(AppContext);
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(event.target.value, 10);
     if (Number.isInteger(value)) {
@@ -33,6 +33,7 @@ export default function Pagination(): JSX.Element {
           name="numberOfItems"
           id="number-of-items"
           className="number-of-items input"
+          value={limit}
           onChange={handleLimitChange}
         >
           {[20, 50, 100].map((number) => (

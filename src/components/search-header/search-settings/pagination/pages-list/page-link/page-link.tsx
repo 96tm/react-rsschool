@@ -1,4 +1,4 @@
-import React, { useContext, MouseEvent } from 'react';
+import React, { useContext } from 'react';
 import './page-link.css';
 import AppContext, {
   IHandlePageNumberChange,
@@ -16,17 +16,16 @@ export default function PageLink({
   const handlePageNumberChange = useContext(AppContext)
     .handlePageNumberChange as IHandlePageNumberChange;
   const { currentPage } = useContext(AppContext);
-  const handleClick = (event: MouseEvent<HTMLAnchorElement>) => {
+  const handleClick = () => {
     handlePageNumberChange(pageNumber);
-    event.preventDefault();
   };
   return (
-    <a
-      href={String(pageNumber)}
+    <button
+      type="button"
       className={`page-link ${currentPage === pageNumber ? 'active' : ''}`}
       onClick={handleClick}
     >
       {text}
-    </a>
+    </button>
   );
 }

@@ -1,17 +1,17 @@
-.not-found {
+.no-results {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   flex-grow: 1;
 }
-.not-found-content {
+.no-results-content {
   display: flex;
   align-items: center;
   justify-content: space-around;
   column-gap: 27px;
 }
-.not-found-text {
+.no-results-text {
   margin: 0;
   font: normal 700 24px/28px var(--main-font);
   color: var(--text-dark);
