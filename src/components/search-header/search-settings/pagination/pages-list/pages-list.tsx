@@ -1,10 +1,11 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import './pages-list.css';
+import { useSelector } from 'react-redux';
 import PageLink from './page-link/page-link';
-import AppContext from '../../../../../shared/app-context';
+import { Store } from '../../../../../redux/store';
 
 export default function PagesList(): JSX.Element {
-  const { currentPage, numberOfPages } = useContext(AppContext);
+  const { currentPage, numberOfPages } = useSelector((state: Store) => state);
   const STRIDE = 5;
   const generatePageLinks = (current: number, total: number) => {
     const pages: (number | null)[] = [1];

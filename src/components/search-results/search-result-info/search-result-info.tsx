@@ -1,129 +1,66 @@
-import React, { useEffect, useContext, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Action } from 'redux';
+import { ThunkDispatch } from 'redux-thunk';
 import './search-result-info.css';
 import { useParams, Link } from 'react-router-dom';
-import AppContext from '../../../shared/app-context';
+import { useSelector, useDispatch } from 'react-redux';
 import Loader from '../../loader/loader';
 import ErrorMessage from '../../error-message/error-message';
-
-interface IResponseJSON {
-  photo: IPhotoInfo;
-  stat: string;
-}
-
-interface IPhotoInfo {
-  id: string;
-  secret: string;
-  server: string;
-  owner: { username: string; nsid: string };
-  title: { _content: string };
-  description: { _content: string };
-  dateuploaded: string;
-  dates: { taken: string };
-  views: number;
-}
-
-interface ISearchResultInfoState {
-  id: string;
-  secret: string;
-  server: string;
-  owner: string;
-  username: string;
-  title: string;
-  description: string;
-  dateUploaded: Date;
-  dateTaken: Date;
-  views: number;
-  empty: boolean;
-}
+import ApiService from '../../../shared/api-service';
+import { Store } from '../../../redux/store';
+import { fetchPhotoInfo } from '../../../redux/thunks';
+import { changeLoadingStatus } from '../../../redux/actions';
+import { IPhotoInfo } from '../../../shared/models/photo-info';
 
 export default function SearchResultInfo(): JSX.Element {
-  const RESPONSE_STATUS_OK = 'ok';
-  const { apiService } = useContext(AppContext);
   const { id: photoId } = useParams<{ id: string }>();
   const [hasImageLoaded, setHasImageLoaded] = useState<boolean>(false);
-  const [error, setError] = useState<string>('');
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [state, setState] = useState<ISearchResultInfoState>({
-    secret: '',
-    server: '',
-    id: '',
-    empty: true,
-    owner: '',
-    username: '',
-    title: '',
-    description: '',
-    dateUploaded: new Date(),
-    dateTaken: new Date(),
-    views: 0,
-  });
-
-  const handleCloseClick = () => {
-    setError('');
-  };
+  const { error, loadingStatus: isLoading } = useSelector(
+    (state: Store) => state
+  );
+  const [photoInfo, setPhotoInfo] = useState<IPhotoInfo | undefined>(undefined);
+  const dispatch = useDispatch<ThunkDispatch<Store, undefined, Action>>();
 
   const handleImageLoad = () => {
     setHasImageLoaded(true);
   };
 
   useEffect(() => {
-    setHasImageLoaded(false);
-  }, []);
-
-  useEffect(() => {
-    setIsLoading(true);
-    apiService
-      ?.getItemInfo({ photoId })
-      .then((response) => response.json())
-      .then((json: IResponseJSON) => {
-        if (!(json.stat === RESPONSE_STATUS_OK)) {
-          throw Error(`Can't get photo details`);
-        }
-        setState({
-          empty: false,
-          id: json.photo.id,
-          secret: json.photo.secret,
-          server: json.photo.server,
-          owner: json.photo.owner.nsid,
-          username: json.photo.owner.username,
-          views: json.photo.views,
-          title: json.photo.title._content,
-          description: json.photo.description._content,
-          dateUploaded: new Date(Number(json.photo.dateuploaded) * 1000),
-          dateTaken: new Date(json.photo.dates.taken),
-        });
-        setError('');
-      })
-      .catch((err: Error) => {
-        setError(err.message);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
+    async function loadPhotoInfo() {
+      dispatch(changeLoadingStatus(false));
+      setHasImageLoaded(false);
+      const url = ApiService.getPhotoInfoUrl(photoId);
+      const info: IPhotoInfo | undefined = await dispatch(fetchPhotoInfo(url));
+      setPhotoInfo(info);
+    }
+    loadPhotoInfo();
   }, []);
 
   return (
     <div className="search-result-info-container page">
-      {error && (
-        <ErrorMessage message={error} handleCloseClick={handleCloseClick} />
-      )}
+      {Boolean(error) && <ErrorMessage message={error} />}
       {isLoading && (
-        <div className="search-result-info">
+        <div
+          className="search-result-info"
+          style={{ justifyContent: 'center' }}
+        >
           <Loader />
         </div>
       )}
-      {!isLoading && !state.empty && (
+      {!isLoading && photoInfo && (
         <div className="search-result-info">
           <header className="search-result-info-header">Photo info</header>
           <div className="search-result-info-content">
             <div className="search-result-image-container">
               <img
                 className="search-result-image"
-                src={apiService?.generateImageLink(state)}
+                src={ApiService.generateImageLink(photoInfo)}
                 alt="Thumbnail"
                 onLoad={handleImageLoad}
               />
               {!hasImageLoaded && <Loader />}
             </div>
+
             <label htmlFor="owner-input" className="search-result-label">
               Owner
             </label>
@@ -132,8 +69,9 @@ export default function SearchResultInfo(): JSX.Element {
               readOnly
               id="owner-input"
               className="owner-input search-result-input"
-              value={state.username || 'No owner specified'}
+              value={photoInfo.username || 'No owner specified'}
             />
+
             <label htmlFor="title-input" className="search-result-label">
               Title
             </label>
@@ -142,7 +80,7 @@ export default function SearchResultInfo(): JSX.Element {
               readOnly
               id="title-input"
               className="title-input search-result-input"
-              value={state.title || 'No title specified'}
+              value={photoInfo.title || 'No title specified'}
             />
 
             <label htmlFor="description-input" className="search-result-label">
@@ -153,7 +91,7 @@ export default function SearchResultInfo(): JSX.Element {
               readOnly
               id="description-input"
               className="description-input search-result-input"
-              value={state.description || 'No description'}
+              value={photoInfo.description || 'No description'}
             />
 
             <label htmlFor="views-input" className="search-result-label">
@@ -164,7 +102,7 @@ export default function SearchResultInfo(): JSX.Element {
               readOnly
               id="views-input"
               className="views-input search-result-input"
-              value={state.views}
+              value={photoInfo.views}
             />
 
             <label htmlFor="date-taken-input" className="search-result-label">
@@ -175,7 +113,7 @@ export default function SearchResultInfo(): JSX.Element {
               readOnly
               id="date-taken-input"
               className="date-taken-input search-result-input"
-              value={state.dateTaken.toLocaleDateString()}
+              value={photoInfo.dateTaken.toLocaleDateString()}
             />
 
             <label
@@ -189,11 +127,13 @@ export default function SearchResultInfo(): JSX.Element {
               readOnly
               id="date-uploaded-input"
               className="date-uploaded-input search-result-input"
-              value={state.dateUploaded.toLocaleDateString()}
+              value={photoInfo.dateUploaded.toLocaleDateString()}
             />
-            <a className="link" href={apiService?.generatePhotoLink(state)}>
+
+            <a className="link" href={ApiService.generatePhotoLink(photoInfo)}>
               View at <span className="link-logo">Flickr</span>
             </a>
+
             <Link className="link-back" to="/">
               Back
             </Link>

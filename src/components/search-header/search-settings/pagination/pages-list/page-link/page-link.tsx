@@ -1,8 +1,8 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import './page-link.css';
-import AppContext, {
-  IHandlePageNumberChange,
-} from '../../../../../../shared/app-context';
+import { useSelector, useDispatch } from 'react-redux';
+import { Store } from '../../../../../../redux/store';
+import { changeCurrentPage } from '../../../../../../redux/actions';
 
 interface IPageLinkProps {
   pageNumber: number;
@@ -13,11 +13,11 @@ export default function PageLink({
   pageNumber,
   text,
 }: IPageLinkProps): JSX.Element {
-  const handlePageNumberChange = useContext(AppContext)
-    .handlePageNumberChange as IHandlePageNumberChange;
-  const { currentPage } = useContext(AppContext);
+  const { currentPage } = useSelector((state: Store) => state);
+  const dispatch = useDispatch();
+
   const handleClick = () => {
-    handlePageNumberChange(pageNumber);
+    dispatch(changeCurrentPage(pageNumber));
   };
   return (
     <button

@@ -1,24 +1,26 @@
-import React, { useContext, ChangeEvent } from 'react';
+import React, { ChangeEvent } from 'react';
 import './pagination.css';
+import { useDispatch, useSelector } from 'react-redux';
 import PagesList from './pages-list/pages-list';
-import AppContext, {
-  IHandleLimitChange,
-  IHandlePageNumberChange,
-} from '../../../../shared/app-context';
+import { changeCurrentPage, changeLimit } from '../../../../redux/actions';
+import { Store } from '../../../../redux/store';
 
 export default function Pagination(): JSX.Element {
-  const handleLimitChange = useContext(AppContext)
-    .handleLimitChange as IHandleLimitChange;
-  const handlePageNumberChange = useContext(AppContext)
-    .handlePageNumberChange as IHandlePageNumberChange;
-  const { currentPage, numberOfPages, limit } = useContext(AppContext);
+  const { limit, currentPage, numberOfPages } = useSelector(
+    (state: Store) => state
+  );
+  const dispatch = useDispatch();
+
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const value = parseInt(event.target.value, 10);
     if (Number.isInteger(value)) {
-      handlePageNumberChange(value);
+      dispatch(changeCurrentPage(value));
     } else {
-      handlePageNumberChange(currentPage);
+      dispatch(changeCurrentPage(currentPage));
     }
+  };
+  const onLimitChange = (event: ChangeEvent<HTMLSelectElement>) => {
+    dispatch(changeLimit(parseInt(event.target.value, 10)));
   };
   return (
     <div className="pagination">
@@ -34,7 +36,7 @@ export default function Pagination(): JSX.Element {
           id="number-of-items"
           className="number-of-items input"
           value={limit}
-          onChange={handleLimitChange}
+          onChange={onLimitChange}
         >
           {[20, 50, 100].map((number) => (
             <option value={number} key={`number-option-${number}`}>

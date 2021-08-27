@@ -1,12 +1,23 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import './sorting.css';
-import AppContext, { IHandleSortClick } from '../../../../shared/app-context';
+import { useSelector, useDispatch } from 'react-redux';
 import SortType from '../../../../shared/models/sort-type';
+import { changeSortType, changeSortOrder } from '../../../../redux/actions';
+import SortOrder from '../../../../shared/models/sort-order';
+import { Store } from '../../../../redux/store';
 
 export default function Sorting(): JSX.Element {
-  const { sortType, sortOrder } = useContext(AppContext);
-  const handleSortClick = useContext(AppContext)
-    .handleSortClick as IHandleSortClick;
+  const { sortType, sortOrder } = useSelector((state: Store) => state);
+  const dispatch = useDispatch();
+
+  const handleSortClick = (newSortType: SortType) => {
+    dispatch(changeSortType(newSortType));
+    dispatch(
+      changeSortOrder(
+        sortOrder === SortOrder.asc ? SortOrder.desc : SortOrder.asc
+      )
+    );
+  };
 
   return (
     <div className="sorting">

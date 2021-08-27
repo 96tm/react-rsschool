@@ -1,14 +1,15 @@
 import React, {
-  useContext,
   MouseEvent,
   FormEvent,
   useState,
   ChangeEvent,
   useEffect,
 } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import './search-bar.css';
 import logo from 'public/assets/icons/logo.png';
-import AppContext, { IHandleSearch } from '../../../shared/app-context';
+import { Store } from '../../../redux/store';
+import { changeLastSearchInput } from '../../../redux/actions';
 
 interface ISearchBarProps {
   handleSettingsClick: (event: MouseEvent<HTMLButtonElement>) => void;
@@ -17,14 +18,14 @@ interface ISearchBarProps {
 export default function SearchBar({
   handleSettingsClick,
 }: ISearchBarProps): JSX.Element {
-  const handleSearch = useContext(AppContext).handleSearch as IHandleSearch;
-
-  const { searchInput: contextSearchInput } = useContext(AppContext);
-
+  const { lastSearchInput, loadingStatus: isLoading } = useSelector(
+    (state: Store) => state
+  );
   const [searchInput, setSearchInput] = useState('');
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    setSearchInput(contextSearchInput);
+    setSearchInput(lastSearchInput);
   }, []);
 
   const handleSearchInputChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -33,10 +34,8 @@ export default function SearchBar({
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
-    handleSearch(searchInput);
+    dispatch(changeLastSearchInput(searchInput));
   };
-
-  const { isLoading } = useContext(AppContext);
 
   return (
     <form className="search-bar" action="#" onSubmit={handleSubmit}>
