@@ -2,15 +2,15 @@ import React from 'react';
 import { Route, Switch, useLocation } from 'react-router-dom';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { useSelector } from 'react-redux';
+import './main.css';
 import { ROUTER_TRANSITION_TIMEOUT } from '../../shared/constants';
-import SearchResults from '../search-results/search-results';
+import { Store } from '../../redux/store';
+import About from '../pages/about/about';
 import ErrorMessage from '../error-message/error-message';
+import SearchHeader from '../search-header/search-header';
+import SearchResults from '../search-results/search-results';
 import SearchResultInfo from '../search-results/search-result-info/search-result-info';
 import PageNotFound from '../pages/not-found/not-found';
-import SearchHeader from '../search-header/search-header';
-import './main.css';
-import About from '../pages/about/about';
-import { Store } from '../../redux/store';
 import ApiService from '../../shared/api-service';
 
 function Main(): JSX.Element {

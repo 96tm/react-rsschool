@@ -1,6 +1,6 @@
 import React from 'react';
-import './page-link.css';
 import { useSelector, useDispatch } from 'react-redux';
+import './page-link.css';
 import { Store } from '../../../../../../redux/store';
 import { changeCurrentPage } from '../../../../../../redux/actions';
 

@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { ThunkDispatch } from 'redux-thunk';
 import { useSelector, useDispatch } from 'react-redux';
+import { ThunkDispatch } from 'redux-thunk';
 import { Action } from 'redux';
 import './search-results.css';
-import Card from './card/card';
 import { Store } from '../../redux/store';
-import NoResults from '../no-results/no-results';
-import Loader from '../loader/loader';
 import { fetchPhotos } from '../../redux/thunks';
+import Card from './card/card';
+import Loader from '../loader/loader';
+import NoResults from '../no-results/no-results';
 
 export default function SearchResults({ url }: { url: string }): JSX.Element {
   const [requestStatus, setRequestStatus] = useState(false);

@@ -1,4 +1,3 @@
-import ActionType from './action-type';
 import IAction from './action';
 
 interface IActionCreator<T> {

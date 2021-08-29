@@ -8,8 +8,8 @@ import React, {
 import { useSelector, useDispatch } from 'react-redux';
 import './search-bar.css';
 import logo from 'public/assets/icons/logo.png';
-import { Store } from '../../../redux/store';
 import { changeLastSearchInput } from '../../../redux/actions';
+import { Store } from '../../../redux/store';
 
 interface ISearchBarProps {
   handleSettingsClick: (event: MouseEvent<HTMLButtonElement>) => void;

@@ -1,10 +1,10 @@
 import React from 'react';
-import './sorting.css';
 import { useSelector, useDispatch } from 'react-redux';
-import SortType from '../../../../shared/models/sort-type';
-import { changeSortType, changeSortOrder } from '../../../../redux/actions';
-import SortOrder from '../../../../shared/models/sort-order';
+import './sorting.css';
 import { Store } from '../../../../redux/store';
+import { changeSortType, changeSortOrder } from '../../../../redux/actions';
+import SortType from '../../../../shared/models/sort-type';
+import SortOrder from '../../../../shared/models/sort-order';
 
 export default function Sorting(): JSX.Element {
   const { sortType, sortOrder } = useSelector((state: Store) => state);

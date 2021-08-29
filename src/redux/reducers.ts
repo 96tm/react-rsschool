@@ -1,10 +1,10 @@
 import { combineReducers, Reducer } from 'redux';
 import { LIMIT } from '../shared/constants';
-import IAction from './models/action';
-import ActionType from './models/action-type';
 import SortType from '../shared/models/sort-type';
 import SortOrder from '../shared/models/sort-order';
 import { IPhoto } from '../shared/models/photo';
+import IAction from './models/action';
+import ActionType from './models/action-type';
 
 const limitReducer: Reducer<number, IAction<number>> = (
   state = LIMIT,

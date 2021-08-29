@@ -1,16 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { Action } from 'redux';
-import { ThunkDispatch } from 'redux-thunk';
-import './search-result-info.css';
-import { useParams, Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
+import { ThunkDispatch } from 'redux-thunk';
+import { useParams, Link } from 'react-router-dom';
+import './search-result-info.css';
 import Loader from '../../loader/loader';
 import ErrorMessage from '../../error-message/error-message';
 import ApiService from '../../../shared/api-service';
+import { IPhotoInfo } from '../../../shared/models/photo-info';
 import { Store } from '../../../redux/store';
 import { fetchPhotoInfo } from '../../../redux/thunks';
 import { changeLoadingStatus } from '../../../redux/actions';
-import { IPhotoInfo } from '../../../shared/models/photo-info';
 
 export default function SearchResultInfo(): JSX.Element {
   const { id: photoId } = useParams<{ id: string }>();

@@ -1,6 +1,6 @@
 import React from 'react';
-import './pages-list.css';
 import { useSelector } from 'react-redux';
+import './pages-list.css';
 import PageLink from './page-link/page-link';
 import { Store } from '../../../../../redux/store';
 
