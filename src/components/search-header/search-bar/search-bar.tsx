@@ -48,6 +48,7 @@ export default function SearchBar({
         value={searchInput}
         onChange={handleSearchInputChange}
         disabled={isLoading}
+        aria-label="search input"
       />
       <button
         type="submit"
@@ -61,6 +62,7 @@ export default function SearchBar({
         className="button-search-settings button search-control"
         onClick={handleSettingsClick}
         disabled={isLoading}
+        aria-label="toggle settings"
       >
         {' '}
       </button>

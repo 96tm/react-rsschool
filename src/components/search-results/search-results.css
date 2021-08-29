@@ -16,3 +16,7 @@
 .statistics {
   display: flex;
 }
+.result-item {
+  width: 40%;
+  min-width: 320px;
+}

@@ -2,11 +2,11 @@ import { IPhoto } from './photo';
 
 export interface IResponsePhotos {
   stat: string;
-  photos: IPhotos;
+  photos: IPhotosInfo;
   message?: string;
 }
 
-export interface IPhotos {
+export interface IPhotosInfo {
   pages: number;
   photo: IPhoto[];
 }

@@ -59,6 +59,7 @@ export default function Pagination(): JSX.Element {
             id="current-page-input"
             className="current-page-input input"
             onChange={handleChange}
+            aria-label="current page input"
           />
         </div>
       </div>

@@ -53,7 +53,7 @@ const config: webpack.Configuration = {
     new HtmlWebpackPlugin({
       template: 'src/index.html',
       favicon: 'public/assets/icons/logo.png',
-      title: 'React API',
+      title: 'React Testing',
     }),
     new ForkTsCheckerWebpackPlugin({
       async: false,

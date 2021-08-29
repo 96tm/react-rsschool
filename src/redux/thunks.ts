@@ -16,7 +16,7 @@ import { PhotoInfo, IPhotoInfo } from '../shared/models/photo-info';
 import ApiService from '../shared/api-service';
 
 export const fetchPhotos =
-  (url: string): ThunkAction<Promise<void>, Store, null, AnyAction> =>
+  (url: string): ThunkAction<Promise<undefined>, Store, undefined, AnyAction> =>
   async (dispatch, getState) => {
     dispatch(changeLoadingStatus(true));
     try {
@@ -41,11 +41,13 @@ export const fetchPhotos =
       dispatch(changePhotos(photos));
       dispatch(changeLoadingStatus(false));
       dispatch(changeError(''));
+      return undefined;
     } catch (err) {
       dispatch(changeError(err.message));
     } finally {
       dispatch(changeLoadingStatus(false));
     }
+    return undefined;
   };
 
 export const fetchPhotoInfo =

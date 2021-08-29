@@ -6,7 +6,7 @@ import SortType from '../shared/models/sort-type';
 import SortOrder from '../shared/models/sort-order';
 import { IPhoto } from '../shared/models/photo';
 
-const limitReducer: Reducer<number, ReturnType<IAction<number>>> = (
+const limitReducer: Reducer<number, IAction<number>> = (
   state = LIMIT,
   action
 ) => {
@@ -18,10 +18,7 @@ const limitReducer: Reducer<number, ReturnType<IAction<number>>> = (
   }
 };
 
-const errorReducer: Reducer<string, ReturnType<IAction<string>>> = (
-  state = '',
-  action
-) => {
+const errorReducer: Reducer<string, IAction<string>> = (state = '', action) => {
   switch (action.type) {
     case ActionType.ChangeError:
       return action.payload;
@@ -30,7 +27,7 @@ const errorReducer: Reducer<string, ReturnType<IAction<string>>> = (
   }
 };
 
-const currentPageReducer: Reducer<number, ReturnType<IAction<number>>> = (
+const currentPageReducer: Reducer<number, IAction<number>> = (
   state = 1,
   action
 ) => {
@@ -42,7 +39,7 @@ const currentPageReducer: Reducer<number, ReturnType<IAction<number>>> = (
   }
 };
 
-const numberOfPagesReducer: Reducer<number, ReturnType<IAction<number>>> = (
+const numberOfPagesReducer: Reducer<number, IAction<number>> = (
   state = 1,
   action
 ) => {
@@ -54,7 +51,7 @@ const numberOfPagesReducer: Reducer<number, ReturnType<IAction<number>>> = (
   }
 };
 
-const sortTypeReducer: Reducer<SortType, ReturnType<IAction<SortType>>> = (
+const sortTypeReducer: Reducer<SortType, IAction<SortType>> = (
   state = SortType.datePosted,
   action
 ) => {
@@ -66,7 +63,7 @@ const sortTypeReducer: Reducer<SortType, ReturnType<IAction<SortType>>> = (
   }
 };
 
-const sortOrderReducer: Reducer<SortOrder, ReturnType<IAction<SortOrder>>> = (
+const sortOrderReducer: Reducer<SortOrder, IAction<SortOrder>> = (
   state = SortOrder.desc,
   action
 ) => {
@@ -78,7 +75,7 @@ const sortOrderReducer: Reducer<SortOrder, ReturnType<IAction<SortOrder>>> = (
   }
 };
 
-const loadingStatusReducer: Reducer<boolean, ReturnType<IAction<boolean>>> = (
+const loadingStatusReducer: Reducer<boolean, IAction<boolean>> = (
   state = false,
   action
 ) => {
@@ -90,7 +87,7 @@ const loadingStatusReducer: Reducer<boolean, ReturnType<IAction<boolean>>> = (
   }
 };
 
-const photosReducer: Reducer<IPhoto[], ReturnType<IAction<IPhoto[]>>> = (
+const photosReducer: Reducer<IPhoto[], IAction<IPhoto[]>> = (
   state = [],
   action
 ) => {
@@ -102,7 +99,7 @@ const photosReducer: Reducer<IPhoto[], ReturnType<IAction<IPhoto[]>>> = (
   }
 };
 
-const lastSearchInputReducer: Reducer<string, ReturnType<IAction<string>>> = (
+const lastSearchInputReducer: Reducer<string, IAction<string>> = (
   state = '',
   action
 ) => {

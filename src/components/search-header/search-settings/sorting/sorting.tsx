@@ -12,11 +12,14 @@ export default function Sorting(): JSX.Element {
 
   const handleSortClick = (newSortType: SortType) => {
     dispatch(changeSortType(newSortType));
-    dispatch(
-      changeSortOrder(
-        sortOrder === SortOrder.asc ? SortOrder.desc : SortOrder.asc
-      )
-    );
+    let newSortOrder;
+    if (newSortType !== sortType) {
+      newSortOrder = SortOrder.desc;
+    } else {
+      newSortOrder =
+        sortOrder === SortOrder.asc ? SortOrder.desc : SortOrder.asc;
+    }
+    dispatch(changeSortOrder(newSortOrder));
   };
 
   return (

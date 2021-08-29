@@ -1,14 +1,15 @@
-import React, { useCallback, useEffect, useState } from 'react';
-import './search-results.css';
+import React, { useEffect, useState } from 'react';
+import { ThunkDispatch } from 'redux-thunk';
 import { useSelector, useDispatch } from 'react-redux';
+import { Action } from 'redux';
+import './search-results.css';
 import Card from './card/card';
 import { Store } from '../../redux/store';
 import NoResults from '../no-results/no-results';
 import Loader from '../loader/loader';
-import ApiService from '../../shared/api-service';
 import { fetchPhotos } from '../../redux/thunks';
 
-export default function SearchResults(): JSX.Element {
+export default function SearchResults({ url }: { url: string }): JSX.Element {
   const [requestStatus, setRequestStatus] = useState(false);
   const {
     sortType,
@@ -19,35 +20,40 @@ export default function SearchResults(): JSX.Element {
     lastSearchInput,
     photos,
   } = useSelector((state: Store) => state);
-  const store = useSelector((state) => state);
-  const dispatch = useDispatch();
-
-  const getSearchItems = useCallback(async () => {
-    if (!lastSearchInput) {
-      return;
-    }
-    const url = ApiService.getPhotosUrl({ ...store }, lastSearchInput);
-    await dispatch(fetchPhotos(url));
-    setRequestStatus(true);
-  }, [limit, currentPage, sortType, sortOrder, lastSearchInput]);
+  const dispatch = useDispatch<ThunkDispatch<Store, undefined, Action>>();
 
   useEffect(() => {
-    getSearchItems();
-  }, [getSearchItems]);
+    let isActive = true;
+    async function loadPhotos() {
+      if (!lastSearchInput) {
+        return;
+      }
+      dispatch(fetchPhotos(url)).then(() => {
+        if (isActive) {
+          setRequestStatus(true);
+        }
+      });
+    }
+    loadPhotos();
+    return () => {
+      isActive = false;
+    };
+  }, [limit, currentPage, sortType, sortOrder, lastSearchInput]);
 
   return (
-    <div className="search-results">
+    <ul className="search-results">
       {isLoading && <Loader />}
       {!photos.length && requestStatus && !isLoading && <NoResults />}
       {photos.map((photo, index) => (
-        <Card
-          src={photo.src}
-          title={photo.title}
-          link={photo.link}
-          photoId={photo.id}
-          key={`card-${String(index)}`}
-        />
+        <li className="result-item" key={`result-item${String(index)}`}>
+          <Card
+            src={photo.src}
+            title={photo.title}
+            link={photo.link}
+            photoId={photo.id}
+          />
+        </li>
       ))}
-    </div>
+    </ul>
   );
 }

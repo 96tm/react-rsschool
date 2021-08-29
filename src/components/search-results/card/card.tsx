@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import './card.css';
 import Loader from '../../loader/loader';
 
-interface ICardProps {
+export interface ICardProps {
   src: string;
   title: string;
   link: string;

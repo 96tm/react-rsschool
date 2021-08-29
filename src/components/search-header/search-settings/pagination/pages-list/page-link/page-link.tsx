@@ -19,11 +19,13 @@ export default function PageLink({
   const handleClick = () => {
     dispatch(changeCurrentPage(pageNumber));
   };
+
   return (
     <button
       type="button"
       className={`page-link ${currentPage === pageNumber ? 'active' : ''}`}
       onClick={handleClick}
+      aria-label="page link button"
     >
       {text}
     </button>

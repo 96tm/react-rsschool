@@ -11,10 +11,13 @@ import SearchHeader from '../search-header/search-header';
 import './main.css';
 import About from '../pages/about/about';
 import { Store } from '../../redux/store';
+import ApiService from '../../shared/api-service';
 
 function Main(): JSX.Element {
   const { error } = useSelector((state: Store) => state);
+  const state = useSelector((stateVariable: Store) => stateVariable);
   const location = useLocation();
+  const url = ApiService.getPhotosUrl(state, state.lastSearchInput);
 
   return (
     <main className="main">
@@ -29,7 +32,7 @@ function Main(): JSX.Element {
             <Route exact path="/">
               <div className="page">
                 <SearchHeader />
-                <SearchResults />
+                <SearchResults url={url} />
               </div>
             </Route>
             <Route path="/about">

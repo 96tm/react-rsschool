@@ -14,6 +14,8 @@ import { IPhotoInfo } from '../../../shared/models/photo-info';
 
 export default function SearchResultInfo(): JSX.Element {
   const { id: photoId } = useParams<{ id: string }>();
+
+  const url = ApiService.getPhotoInfoUrl(photoId);
   const [hasImageLoaded, setHasImageLoaded] = useState<boolean>(false);
   const { error, loadingStatus: isLoading } = useSelector(
     (state: Store) => state
@@ -26,14 +28,20 @@ export default function SearchResultInfo(): JSX.Element {
   };
 
   useEffect(() => {
+    let isActive = true;
     async function loadPhotoInfo() {
       dispatch(changeLoadingStatus(false));
       setHasImageLoaded(false);
-      const url = ApiService.getPhotoInfoUrl(photoId);
-      const info: IPhotoInfo | undefined = await dispatch(fetchPhotoInfo(url));
-      setPhotoInfo(info);
+      dispatch(fetchPhotoInfo(url)).then((info: IPhotoInfo | undefined) => {
+        if (isActive) {
+          setPhotoInfo(info);
+        }
+      });
     }
     loadPhotoInfo();
+    return () => {
+      isActive = false;
+    };
   }, []);
 
   return (
