@@ -1,0 +1,12 @@
+.page-not-found {
+  display: flex;
+  justify-content: center;
+  background: no-repeat url('public/assets/icons/not-found.svg') center;
+  background-size: 300px;
+}
+.not-found-message {
+  transform: translateY(190%);
+  font: normal 700 32px/150% var(--main-font);
+  text-align: center;
+  color: var(--text-dark);
+}
