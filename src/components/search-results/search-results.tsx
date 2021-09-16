@@ -2,14 +2,15 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { ThunkDispatch } from 'redux-thunk';
 import { Action } from 'redux';
-import './search-results.css';
 import { Store } from '../../redux/store';
 import { fetchPhotos } from '../../redux/thunks';
 import Card from './card/card';
 import Loader from '../loader/loader';
 import NoResults from '../no-results/no-results';
+import ApiService from '../../shared/api-service';
+import './search-results.css';
 
-export default function SearchResults({ url }: { url: string }): JSX.Element {
+export default function SearchResults(): JSX.Element {
   const [requestStatus, setRequestStatus] = useState(false);
   const {
     sortType,
@@ -20,9 +21,11 @@ export default function SearchResults({ url }: { url: string }): JSX.Element {
     lastSearchInput,
     photos,
   } = useSelector((state: Store) => state);
+  const state = useSelector((stateVariable: Store) => stateVariable);
   const dispatch = useDispatch<ThunkDispatch<Store, undefined, Action>>();
 
   useEffect(() => {
+    const url = ApiService.getPhotosUrl(state, state.lastSearchInput);
     let isActive = true;
     async function loadPhotos() {
       if (!lastSearchInput) {

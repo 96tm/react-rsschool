@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import './card.css';
 import Loader from '../../loader/loader';
+import './card.css';
 
 export interface ICardProps {
   src: string;

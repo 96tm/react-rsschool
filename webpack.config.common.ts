@@ -6,7 +6,7 @@ import ESLintWebpackPlugin from 'eslint-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
 const config: webpack.Configuration = {
-  entry: './src/index.tsx',
+  entry: path.join(__dirname, 'src', 'index.tsx'),
   module: {
     rules: [
       {
@@ -51,9 +51,9 @@ const config: webpack.Configuration = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: 'src/index.html',
-      favicon: 'public/assets/icons/logo.png',
-      title: 'React Testing',
+      template: path.join(__dirname, 'src', 'index.html'),
+      favicon: path.join(__dirname, 'public', 'assets/icons/logo.png'),
+      title: 'React SSR',
     }),
     new ForkTsCheckerWebpackPlugin({
       async: false,

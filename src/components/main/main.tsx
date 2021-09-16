@@ -1,23 +1,16 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import { Route, Switch, useLocation } from 'react-router-dom';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import { useSelector } from 'react-redux';
-import './main.css';
-import { ROUTER_TRANSITION_TIMEOUT } from '../../shared/constants';
 import { Store } from '../../redux/store';
-import About from '../pages/about/about';
+import { ROUTER_TRANSITION_TIMEOUT } from '../../shared/constants';
+import { ROUTES } from '../../shared/routes';
 import ErrorMessage from '../error-message/error-message';
-import SearchHeader from '../search-header/search-header';
-import SearchResults from '../search-results/search-results';
-import SearchResultInfo from '../search-results/search-result-info/search-result-info';
-import PageNotFound from '../pages/not-found/not-found';
-import ApiService from '../../shared/api-service';
+import './main.css';
 
 function Main(): JSX.Element {
   const { error } = useSelector((state: Store) => state);
-  const state = useSelector((stateVariable: Store) => stateVariable);
   const location = useLocation();
-  const url = ApiService.getPhotosUrl(state, state.lastSearchInput);
 
   return (
     <main className="main">
@@ -29,23 +22,15 @@ function Main(): JSX.Element {
           key={location.key}
         >
           <Switch location={location}>
-            <Route exact path="/">
-              <div className="page">
-                <SearchHeader />
-                <SearchResults url={url} />
-              </div>
-            </Route>
-            <Route path="/about">
-              <About />
-            </Route>
-            <Route path="/details/:id">
-              <div className="page">
-                <SearchResultInfo />
-              </div>
-            </Route>
-            <Route path="*">
-              <PageNotFound />
-            </Route>
+            {ROUTES.map((route) => (
+              <Route
+                key={route.key}
+                exact={route.props?.exact}
+                path={route.path}
+              >
+                {route.component}
+              </Route>
+            ))}
           </Switch>
         </CSSTransition>
       </TransitionGroup>

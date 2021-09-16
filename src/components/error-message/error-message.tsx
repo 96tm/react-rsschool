@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import './error-message.css';
 import { changeError } from '../../redux/actions';
+import './error-message.css';
 
 interface IErrorMessageProps {
   message: string;

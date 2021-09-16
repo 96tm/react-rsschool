@@ -1,17 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { hot } from 'react-hot-loader';
 import { Provider } from 'react-redux';
-import App from './components/app';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { store } from './redux/store';
+import renderApp from './shared/renderApp';
 
-const HotApp = hot(module)(App);
-
-ReactDOM.render(
-  <React.StrictMode>
-    <Provider store={store}>
-      <HotApp />
-    </Provider>
-  </React.StrictMode>,
+ReactDOM.hydrate(
+  <Provider store={store}>
+    <Router>{renderApp()}</Router>
+  </Provider>,
   document.getElementById('root')
 );

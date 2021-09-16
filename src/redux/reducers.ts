@@ -122,4 +122,5 @@ const rootReducer = combineReducers({
   photos: photosReducer,
   lastSearchInput: lastSearchInputReducer,
 });
+
 export default rootReducer;

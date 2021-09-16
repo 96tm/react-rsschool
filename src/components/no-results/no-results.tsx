@@ -1,6 +1,6 @@
 import React from 'react';
-import './no-results.css';
 import notFound from 'public/assets/icons/not-found.svg';
+import './no-results.css';
 
 export default function NoResults(): JSX.Element {
   return (

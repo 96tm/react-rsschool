@@ -5,11 +5,11 @@ import React, {
   ChangeEvent,
   useEffect,
 } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import './search-bar.css';
 import logo from 'public/assets/icons/logo.png';
+import { useSelector, useDispatch } from 'react-redux';
 import { changeLastSearchInput } from '../../../redux/actions';
 import { Store } from '../../../redux/store';
+import './search-bar.css';
 
 interface ISearchBarProps {
   handleSettingsClick: (event: MouseEvent<HTMLButtonElement>) => void;

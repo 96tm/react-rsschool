@@ -38,38 +38,19 @@ describe('SearchResults', () => {
   test('Get 3 result items', async () => {
     const { getAllByRole } = render(
       <Router>
-        <SearchResults url={ENDPOINT} />
+        <SearchResults />
       </Router>,
       {
         preloadedStore: {
           ...defaultStore.getState(),
           photos: [PhotoMock1, PhotoMock2, PhotoMock3],
+          lastSearchInput: ENDPOINT,
         },
       }
     );
     await waitFor(async () => {
       const listItems = await getAllByRole('listitem');
       expect(listItems).toHaveLength(3);
-    });
-  });
-  test('Get no results from API', async () => {
-    const { queryByRole, queryByText } = render(
-      <Router>
-        <SearchResults url={ENDPOINT_NO_PHOTOS} />
-      </Router>,
-      {
-        preloadedStore: {
-          ...defaultStore.getState(),
-          lastSearchInput: 'input',
-        },
-      }
-    );
-    await waitFor(async () => {
-      const listItems = await queryByRole('listitem');
-      expect(listItems).toBeNull();
-      expect(1).toBe(1);
-      const notFoundElement = await queryByText('Nothing found');
-      expect(notFoundElement).toBeInTheDocument();
     });
   });
 });

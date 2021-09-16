@@ -1,8 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import './pages-list.css';
 import PageLink from './page-link/page-link';
 import { Store } from '../../../../../redux/store';
+import './pages-list.css';
 
 export default function PagesList(): JSX.Element {
   const { currentPage, numberOfPages } = useSelector((state: Store) => state);

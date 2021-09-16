@@ -1,9 +1,9 @@
 import React, { ChangeEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import './pagination.css';
 import PagesList from './pages-list/pages-list';
 import { Store } from '../../../../redux/store';
 import { changeCurrentPage, changeLimit } from '../../../../redux/actions';
+import './pagination.css';
 
 export default function Pagination(): JSX.Element {
   const { limit, currentPage, numberOfPages } = useSelector(

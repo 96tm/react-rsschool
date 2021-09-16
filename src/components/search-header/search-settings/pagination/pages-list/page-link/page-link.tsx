@@ -1,8 +1,8 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import './page-link.css';
 import { Store } from '../../../../../../redux/store';
 import { changeCurrentPage } from '../../../../../../redux/actions';
+import './page-link.css';
 
 interface IPageLinkProps {
   pageNumber: number;
