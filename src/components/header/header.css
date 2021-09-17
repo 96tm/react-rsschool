@@ -1,0 +1,26 @@
+.header {
+  width: 100%;
+}
+.nav {
+  width: 100%;
+  padding: 18px;
+  background: #000;
+}
+.nav-list {
+  display: flex;
+  justify-content: center;
+  column-gap: 30px;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.nav-link {
+  color: hsla(0, 0%, 100%, 0.6);
+  text-decoration: none;
+}
+
+.active-nav-link,
+.nav-link:hover,
+.nav-link.active {
+  color: #fff;
+}
