@@ -39,7 +39,10 @@ export default function PagesList(): JSX.Element {
   };
   return (
     <ul className="pages-list">
-      {generatePageLinks(currentPage, numberOfPages).map((item, index) => {
+      {generatePageLinks(
+        Math.min(currentPage, numberOfPages),
+        numberOfPages
+      ).map((item, index) => {
         let element: JSX.Element;
         if (item) {
           element = <PageLink pageNumber={item} text={String(item)} />;
