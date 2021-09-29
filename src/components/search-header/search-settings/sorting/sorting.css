@@ -1,0 +1,40 @@
+.sorting {
+  display: flex;
+  align-items: center;
+  flex-flow: row wrap;
+  row-gap: 10px;
+  padding-bottom: 10px;
+}
+.sort-title {
+  padding-right: 10px;
+  color: var(--text-gray);
+}
+.sort-option {
+  position: relative;
+  padding: 0;
+  margin-right: 20px;
+  background: transparent;
+  border: none;
+  color: var(--bg-blue);
+  cursor: pointer;
+}
+.sort-option.active {
+  text-decoration: underline;
+}
+.sort-option.active.asc::after,
+.sort-option.active.desc::after {
+  position: absolute;
+  font-size: 8px;
+  transform: translate(20%, 35%);
+}
+.sort-option.active.asc::after {
+  content: '▲';
+}
+.sort-option.active.desc::after {
+  content: '▼';
+}
+.buttons {
+  display: flex;
+  flex-flow: row wrap;
+  row-gap: 10px;
+}
