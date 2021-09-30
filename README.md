@@ -6,6 +6,6 @@
 
 # React Flickr client
 This is a client for <a href="https://www.flickr.com">Flickr</a>'s public API made during a Front-end course by <a href="https://rs.school/">The Rolling Scopes School</a>.
-It uses ```React```, ```Redux```, ```TypeScript``` and and ```Webpack```.
+It uses ```React```, ```Redux```, ```TypeScript``` and ```Webpack```.
 You can see the deployed app <a href="https://96tm.github.io/react-rsschool/react-redux/">here</a>.
 ![Screenshot from 2021-08-25 13-06-28](https://user-images.githubusercontent.com/2994043/130771740-e04e8671-ad8b-4195-ba8d-422d5bd2cbd5.png)
